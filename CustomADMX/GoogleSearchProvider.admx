@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <policyNamespaces>
+    <target prefix="search" namespace="Microsoft.Policies.search" />
+    <using prefix="inetres" namespace="Microsoft.Policies.InternetExplorer" />
+  </policyNamespaces>
+  <resources minRequiredRevision="1.0" />
+  <policies>
+      <policy name="PopulateSearchProviderList_1" class="User" displayName="$(string.PopulateSearchProviderList)" explainText="$(string.IE_Explain_PopulateSearchProviderList)"  key="Software\Policies\Microsoft\Internet Explorer\SearchScopes">
+      <parentCategory ref="inetres:InternetExplorer" />
+      <supportedOn ref="inetres:SUPPORTED_IE7"/>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\Internet Explorer\SearchScopes" valueName="Version">
+            <value>
+                <decimal value="2" />
+            </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Internet Explorer\SearchScopes\{E500F69F-8C85-4D09-A822-09870C151594}" valueName="DisplayName">
+            <value>
+                <string>Google</string>
+            </value> 
+        </item> 
+        <item key="Software\Policies\Microsoft\Internet Explorer\SearchScopes\{E500F69F-8C85-4D09-A822-09870C151594}" valueName="URL">
+            <value>
+                <string>http://www.google.com/search?q={searchTerms}&amp;rls=com.microsoft:{language}&amp;ie={inputEncoding}&amp;oe={outputEncoding}&amp;startIndex={startIndex?}&amp;startPage={startPage}</string>
+            </value>
+        </item>
+      </enabledList>
+      </policy>
+      <policy name="PopulateSearchProviderList_2" class="Machine" displayName="$(string.PopulateSearchProviderList)" explainText="$(string.IE_Explain_PopulateSearchProviderList)" key="Software\Policies\Microsoft\Internet Explorer\SearchScopes">
+     <parentCategory ref="inetres:InternetExplorer" />
+      <supportedOn ref="inetres:SUPPORTED_IE7"/>
+      <enabledList>
+        <item key="Software\Policies\Microsoft\Internet Explorer\SearchScopes" valueName="Version">
+            <value>
+                <decimal value="2" />
+            </value>
+        </item>
+        <item key="Software\Policies\Microsoft\Internet Explorer\SearchScopes\{E500F69F-8C85-4D09-A822-09870C151594}" valueName="DisplayName">
+            <value>
+                <string>Google</string>
+            </value> 
+        </item> 
+        <item key="Software\Policies\Microsoft\Internet Explorer\SearchScopes\{E500F69F-8C85-4D09-A822-09870C151594}" valueName="URL">
+            <value>
+                <string>http://www.google.com/search?q={searchTerms}&amp;rls=com.microsoft:{language}&amp;ie={inputEncoding}&amp;oe={outputEncoding}&amp;startIndex={startIndex?}&amp;startPage={startPage}</string>
+            </value>
+        </item>
+      </enabledList>
+      </policy> 
+  </policies>
+</policyDefinitions>

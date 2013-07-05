@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<policyDefinitionResources xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" revision="1.0" schemaVersion="1.0" xmlns="http://www.microsoft.com/GroupPolicy/PolicyDefinitions">
+  <displayName>Google</displayName>
+  <description>Get search suggestions with Google</description>
+  <resources>
+    <stringTable>
+      <string id="PopulateSearchProviderList">Populate List of search providers</string>
+      <string id="IE_Explain_PopulateSearchProviderList">This policy setting will let you populate a list of search providers that will be displayed in Internet Explorer's search box.
+
+If you enable this policy setting and if the "Restrict search providers to a specific list of search providers" Group Policy setting is enabled, this list will be the only list that appears in the Internet Explorer drop-down list. If the "Add a specific list of search providers to the user's search provider list" Group Policy setting is enabled, this list will be added to the user's list of search providers.
+
+If you disable this policy setting or do not configure it, users will have complete freedom to create their own search provider list.</string>
+    </stringTable>
+  </resources>
+</policyDefinitionResources>
