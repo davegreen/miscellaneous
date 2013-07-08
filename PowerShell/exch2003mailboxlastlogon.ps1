@@ -2,10 +2,10 @@
 # (http://blogs.technet.com/b/gary/archive/2009/09/16/list-mailbox-sizes-for-both-exchange-2003-and-exchange-2007.aspx)
 
 #Grab the CSV file name from args
-[CmdletBinding()]
+[cmdletbinding()]
 param(
-  [Parameter(Mandatory=$true,Position=1)][string]$OutputFile,
-  [Parameter(Mandatory=$true,Position=2)][string]$ComputerName
+  [parameter(Mandatory=$true, Position=1)][string]$OutputFile,
+  [parameter(Mandatory=$true, Position=2)][string]$ComputerName
 )
 
 # Get the WMI objects from both Exchange and AD
@@ -30,7 +30,7 @@ foreach ($euser in $exchusers)
   # Make the lastlogon date look nice for the export. 
   if (($aduser.DS_LastLogon -ne $null) -and ($aduser.DS_LastLogon -ne "0"))
   {
-    [DateTime]$lastlogondate = $aduser.DS_LastLogon
+    [datetime]$lastlogondate = $aduser.DS_LastLogon
     [string]$lastlogondate = $lastlogondate.AddYears(1600).Date.ToString()
   }
 
@@ -49,8 +49,8 @@ foreach ($euser in $exchusers)
 
   # Set the rest of the object values.
   $object.Name = $euser.MailboxDisplayName
-  $object.MailboxSizeinMB = ([Math]::Round(($euser.size / 1MB *1KB),2))
-  $object.Disabled = [bool](([String]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2"))
+  $object.MailboxSizeinMB = ([math]::Round(($euser.size / 1MB *1KB),2))
+  $object.Disabled = [bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2"))
   $object.Mail = $aduser.DS_Mail
   $object.ProxyAddresses = [string]$aduser.DS_proxyAddresses
   $object.TotalItems = $euser.TotalItems
