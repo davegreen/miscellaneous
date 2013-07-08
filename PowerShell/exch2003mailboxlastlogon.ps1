@@ -20,7 +20,6 @@ $templateobject = $templateobject | Select-Object Name, CN, HRNo, Disabled, Mail
 foreach ($euser in $exchusers)
 {
   $lastlogondate = @()
-  $addresses = @()
   
   # Set the template object to the temporary object we wish to populate.
   $object = $templateobject | Select-Object *
@@ -53,7 +52,7 @@ foreach ($euser in $exchusers)
   $object.MailboxSizeinMB = ([Math]::Round(($euser.size / 1MB *1KB),2))
   $object.Disabled = ([String]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2")
   $object.Mail = $aduser.DS_Mail
-  $object.ProxyAddresses = $aduser.DS_proxyAddresses
+  $object.ProxyAddresses = [string]$aduser.DS_proxyAddresses
   $object.TotalItems = $euser.TotalItems
   $object.CN = $aduser.DS_CN
   
