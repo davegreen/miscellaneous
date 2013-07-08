@@ -5,17 +5,18 @@
 [cmdletbinding()]
 param(
   [parameter(Mandatory=$true, Position=1)][string]$OutputFile,
-  [parameter(Mandatory=$true, Position=2)][string]$ComputerName
+  [parameter(Mandatory=$true, Position=2)][string]$ExchServerName,
+  [parameter(Mandatory=$true, Position=3)][string]$ADServerName
 )
 
 # Get the WMI objects from both Exchange and AD
 Write-Verbose "Getting data from WMI (root\MicrosoftExchangeV2\Exchange_mailbox)"
 Write-Progress -Activity "Preparing Run" -Status "Getting data from WMI (root\MicrosoftExchangeV2\Exchange_mailbox)" -PercentComplete 0
-$exchusers = Get-WmiObject -ComputerName $ComputerName -Namespace root\MicrosoftExchangeV2 -Class Exchange_mailbox | Select-Object LegacyDN, MailboxDisplayName, Size, TotalItems
+$exchusers = Get-WmiObject -ComputerName $ExchServerName -Namespace root\MicrosoftExchangeV2 -Class Exchange_mailbox | Select-Object LegacyDN, MailboxDisplayName, Size, TotalItems
 Write-Progress -Activity "Preparing Run" -Status "Getting data from WMI (root\directory\ldap\ds_user)" -PercentComplete 50
 Write-Verbose "Got Exchange WMI data."
 Write-Verbose "Getting data from WMI (root\directory\ldap\ds_user)"
-$adusers = Get-WmiObject -ComputerName $ComputerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN, DS_LastLogon, DS_accountExpires
+$adusers = Get-WmiObject -ComputerName $ADServerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN, DS_LastLogon, DS_accountExpires
 Write-Progress -Activity "Preparing Run" -Status "Got WMI Data." -PercentComplete 100
 Write-Verbose "Got AD WMI data."
 $results = @()
