@@ -28,7 +28,7 @@ foreach ($euser in $exchusers)
   $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
 
   # Make the lastlogon date look nice for the export. 
-  if ($aduser.DS_LastLogon -ne $null)
+  if (($aduser.DS_LastLogon -ne $null) -and ($aduser.DS_LastLogon -ne "0"))
   {
     [DateTime]$lastlogondate = $aduser.DS_LastLogon
     [string]$lastlogondate = $lastlogondate.AddYears(1600).Date.ToString()
