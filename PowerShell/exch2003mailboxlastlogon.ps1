@@ -4,9 +4,10 @@
 #Grab the exchange server and output file name from args.
 [cmdletbinding()]
 param(
-  [parameter(Mandatory=$true, Position=1)][string]$OutputFile,
-  [parameter(Mandatory=$true, Position=2)][string]$ExchServerName,
-  [parameter(Mandatory=$true, Position=3)][string]$ADServerName
+  [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
+  [parameter(Mandatory=$true, Position=2)][string]$ADServerName,
+  [parameter(Mandatory=$false, Position=3)][string]$OutputFile
+  
 )
 
 # Get the WMI objects from both Exchange and AD
@@ -84,4 +85,14 @@ foreach ($euser in $exchusers)
 
 # Sort the results by mailbox size, then output it to a csv.
 $results = $results | Sort-Object mailboxsizeinMB –Descending
-$results | Export-Csv $OutputFile -NoTypeInformation
+
+# Allow output to CSV, or to the pipeline.
+if ($OutputFile)
+{
+  $results | Export-Csv $OutputFile -NoTypeInformation
+}
+
+else
+{
+  Write-Output $results
+}
