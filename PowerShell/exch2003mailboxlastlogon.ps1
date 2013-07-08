@@ -28,7 +28,7 @@ $templateobject = $templateobject | Select-Object Name, CN, HRNo, Disabled, Mail
 
 foreach ($euser in $exchusers)
 {
-  # Display the next sectin of the progress, for formatting and matching the data.
+  # Display the next section of the progress, for formatting and matching the data.
   Write-Progress -Activity "Formatting and matching data" -Status ("User: " + $euser.MailboxDisplayName) -PercentComplete ($results.Count / $exchusers.Count * 100)
   $lastlogondate = @()
   
@@ -78,8 +78,6 @@ foreach ($euser in $exchusers)
   $object.ProxyAddresses = [string]$aduser.DS_proxyAddresses
   $object.TotalItems = $euser.TotalItems
   $object.CN = $aduser.DS_CN
-  
-  # Display the created object before adding it to the final result set.
   Write-Verbose $object
   $results += $object
 }
