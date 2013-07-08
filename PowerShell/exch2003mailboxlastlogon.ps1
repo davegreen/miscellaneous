@@ -7,10 +7,10 @@ param(
   [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
   [parameter(Mandatory=$true, Position=2)][string]$ADServerName,
   [parameter(Mandatory=$false, Position=3)][string]$OutputFile
-  
 )
 
 # Get the WMI objects from both Exchange and AD
+# Write progress to the console, to keep the user updated.
 Write-Verbose "Getting data from WMI (root\MicrosoftExchangeV2\Exchange_mailbox)"
 Write-Progress -Activity "Preparing Run" -Status "Getting data from WMI (root\MicrosoftExchangeV2\Exchange_mailbox)" -PercentComplete 0
 $exchusers = Get-WmiObject -ComputerName $ExchServerName -Namespace root\MicrosoftExchangeV2 -Class Exchange_mailbox | Select-Object LegacyDN, MailboxDisplayName, Size, TotalItems
@@ -28,6 +28,7 @@ $templateobject = $templateobject | Select-Object Name, CN, HRNo, Disabled, Mail
 
 foreach ($euser in $exchusers)
 {
+  # Display the next sectin of the progress, for formatting and matching the data.
   Write-Progress -Activity "Formatting and matching data" -Status ("User: " + $euser.MailboxDisplayName) -PercentComplete ($results.Count / $exchusers.Count * 100)
   $lastlogondate = @()
   
