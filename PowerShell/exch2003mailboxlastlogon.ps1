@@ -86,7 +86,7 @@ foreach ($euser in $exchusers)
 # Allow output to CSV, or to the pipeline.
 if ($OutputFile)
 {
-  $results | Export-Csv $OutputFile -NoTypeInformation
+  $results | Export-Csv $OutputFile -NoTypeInformation -NoClobber
 }
 
 else
