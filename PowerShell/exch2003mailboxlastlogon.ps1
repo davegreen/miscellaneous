@@ -10,7 +10,7 @@ param(
 
 # Get the WMI objects from both Exchange and AD
 $exchusers += Get-WmiObject -ComputerName $ComputerName -Namespace root\MicrosoftExchangeV2 -Class Exchange_mailbox | Select-Object LegacyDN, MailboxDisplayName, Size, TotalItems
-$adusers += Get-WmiObject -ComputerName $ComputerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN
+$adusers += Get-WmiObject -ComputerName $ComputerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN, DS_LastLogon
 $results = @()
 
 # Create the template object and give it the properties we need to set.
