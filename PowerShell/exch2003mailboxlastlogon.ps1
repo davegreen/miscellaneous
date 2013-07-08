@@ -57,6 +57,11 @@ foreach ($euser in $exchusers)
     [datetime]$accountexpiry = $aduser.DS_accountExpires
     [string]$object.ExpiryDate = $accountexpiry.AddYears(1600).Date.ToString()
   }
+   
+  else
+  {
+    [string]$object.ExpiryDate = "Never"
+  }
 
   # Set the rest of the object values.
   $object.Name = $euser.MailboxDisplayName
