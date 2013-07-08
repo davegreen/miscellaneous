@@ -83,9 +83,6 @@ foreach ($euser in $exchusers)
   $results += $object
 }
 
-# Sort the results by mailbox size, then output it to a csv.
-$results = $results | Sort-Object mailboxsizeinMB –Descending
-
 # Allow output to CSV, or to the pipeline.
 if ($OutputFile)
 {
