@@ -50,7 +50,7 @@ foreach ($euser in $exchusers)
   # Set the rest of the object values.
   $object.Name = $euser.MailboxDisplayName
   $object.MailboxSizeinMB = ([Math]::Round(($euser.size / 1MB *1KB),2))
-  $object.Disabled = ([String]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2")
+  $object.Disabled = [bool](([String]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2"))
   $object.Mail = $aduser.DS_Mail
   $object.ProxyAddresses = [string]$aduser.DS_proxyAddresses
   $object.TotalItems = $euser.TotalItems
