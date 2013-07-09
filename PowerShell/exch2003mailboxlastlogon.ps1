@@ -9,6 +9,22 @@ param(
   [parameter(Mandatory=$false, Position=3)][string]$OutputFile
 )
 
+Function Get-ADDate($addate)
+{
+  if (($addate -ne $null) -and ($addate -ne "0") -and ($addate -ne "9223372036854775807"))
+  {
+    [datetime]$datetime = $addate
+    [string]$formatteddate = $datetime.AddYears(1600).Date.ToString()
+  }
+
+  else
+  {
+    [string]$formatteddate = "Never"
+  }
+
+  return $formatteddate
+}
+
 # Get the WMI objects from both Exchange and AD
 # Write progress to the console, to keep the user updated.
 Write-Verbose "Getting data from WMI on $ExchServerName (root\MicrosoftExchangeV2\Exchange_mailbox)"
@@ -40,18 +56,7 @@ foreach ($euser in $exchusers)
   $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
 
   # Make the lastlogon date look nice for the export. 
-  if (($aduser.DS_LastLogon -ne $null) -and ($aduser.DS_LastLogon -ne "0"))
-  {
-    [datetime]$lastlogondate = $aduser.DS_LastLogon
-    [string]$lastlogondate = $lastlogondate.AddYears(1600).Date.ToString()
-  }
-
-  else
-  {
-    [string]$lastlogondate = "Never"
-  }
-
-  $object.LastLogon = $lastlogondate
+  $object.LastLogon = Get-ADDate $aduser.DS_LastLogon
 
   # Same for extensionattribute1, which we use for the users HR number.
   if ($aduser.DS_extensionAttribute1 -ne $null)
@@ -60,18 +65,7 @@ foreach ($euser in $exchusers)
   }
 
   # Again, make the accountexpires date look nice for export.
-  if (($aduser.DS_accountExpires -ne $null) -and ($aduser.DS_accountExpires -ne "0") -and ($aduser.DS_accountExpires -ne "9223372036854775807"))
-  {
-    [datetime]$accountexpiry = $aduser.DS_accountExpires
-    [string]$accountexpires = $accountexpiry.AddYears(1600).Date.ToString()
-  }
-   
-  else
-  {
-    [string]$accountexpires = "Never"
-  }
-
-  $object.ExpiryDate = $accountexpires
+  $object.ExpiryDate = Get-ADDate $aduser.DS_accountExpires
 
   # Set the rest of the object values.
   $object.Name = $euser.MailboxDisplayName
