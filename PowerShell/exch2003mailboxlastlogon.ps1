@@ -31,6 +31,7 @@ foreach ($euser in $exchusers)
   # Display the next section of the progress, for formatting and matching the data.
   Write-Progress -Activity "Formatting and matching data" -Status ("User: " + $euser.MailboxDisplayName) -PercentComplete ($results.Count / $exchusers.Count * 100)
   $lastlogondate = @()
+  $accountexpires = @()
   
   # Set the template object to the temporary object we wish to populate.
   $object = $templateobject | Select-Object *
@@ -62,13 +63,15 @@ foreach ($euser in $exchusers)
   if (($aduser.DS_accountExpires -ne $null) -and ($aduser.DS_accountExpires -ne "0") -and ($aduser.DS_accountExpires -ne "9223372036854775807"))
   {
     [datetime]$accountexpiry = $aduser.DS_accountExpires
-    [string]$object.ExpiryDate = $accountexpiry.AddYears(1600).Date.ToString()
+    [string]$accountexpires = $accountexpiry.AddYears(1600).Date.ToString()
   }
    
   else
   {
-    [string]$object.ExpiryDate = "Never"
+    [string]$accountexpires = "Never"
   }
+
+  $object.ExpiryDate = $accountexpires
 
   # Set the rest of the object values.
   $object.Name = $euser.MailboxDisplayName
