@@ -46,29 +46,34 @@ foreach ($euser in $exchusers)
   $accountexpires = @()
   $object = New-Object PSObject
 
-  # Grab the first AD object where the DistinguishedName matches between AD and Exchange.
-  $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
-
-  # Make the lastlogon date look nice for the export. 
-  $object | Add-Member -Type NoteProperty -Name LastLogon -Value (Get-ADDate $aduser.DS_LastLogon)
-
-  # Same for extensionattribute1, which we use for the users HR number.
-  if ($aduser.DS_extensionAttribute1 -ne $null)
-  {
-    $object | Add-Member -Type NoteProperty -Name HRNo -Value ($aduser.DS_extensionAttribute1.ToString().PadLeft(5,'0'))
-  }
-
-  # Again, make the accountexpires date look nice for export.
-  $object | Add-Member -Type NoteProperty -Name ExpiryDate -Value (Get-ADDate $aduser.DS_accountExpires)
-
-  # Set the rest of the object values.
+  # Grab and format the Exchange object values.
   $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
   $object | Add-Member -Type NoteProperty -Name MailboxSizeinMB -Value ([math]::Round(($euser.size / 1MB *1KB),2))
-  $object | Add-Member -Type NoteProperty -Name Disabled -Value ([bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2")))
-  $object | Add-Member -Type NoteProperty -Name Mail -Value $aduser.DS_Mail
-  $object | Add-Member -Type NoteProperty -Name ProxyAddresses -Value [string]$aduser.DS_proxyAddresses
   $object | Add-Member -Type NoteProperty -Name TotalItems -Value $euser.TotalItems
-  $object | Add-Member -Type NoteProperty -Name CN -Value $aduser.DS_CN
+
+  # Grab the AD object where the DistinguishedName matches between AD and Exchange.
+  $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
+
+  # Grab and format the AD object values.
+  if ($aduser)
+  {
+    $object | Add-Member -Type NoteProperty -Name Mail -Value $aduser.DS_Mail
+    $object | Add-Member -Type NoteProperty -Name ProxyAddresses -Value [string]$aduser.DS_proxyAddresses
+    $object | Add-Member -Type NoteProperty -Name Disabled -Value ([bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2")))
+
+    # Again, make the accountexpires date look nice for export.
+    $object | Add-Member -Type NoteProperty -Name ExpiryDate -Value (Get-ADDate $aduser.DS_accountExpires)
+
+    # Make the lastlogon date look nice for the export. 
+    $object | Add-Member -Type NoteProperty -Name LastLogon -Value (Get-ADDate $aduser.DS_LastLogon)
+
+    # Same for extensionattribute1, which we use for the users HR number.
+    if ($aduser.DS_extensionAttribute1 -ne $null)
+    {
+      $object | Add-Member -Type NoteProperty -Name HRNo -Value ($aduser.DS_extensionAttribute1.ToString().PadLeft(5,'0'))
+    }
+  }
+
   Write-Verbose $object
   $results += $object
 }
