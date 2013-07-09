@@ -38,43 +38,37 @@ Write-Progress -Activity "Preparing Run" -Status "Got WMI Data." -PercentComplet
 Write-Verbose "Got AD WMI data."
 $results = @()
 
-# Create the template object and give it the properties we need to set.
-$templateobject = New-Object PSObject
-$templateobject = $templateobject | Select-Object Name, CN, HRNo, Disabled, MailboxSizeinMB, Mail, ProxyAddresses, TotalItems, LastLogon, ExpiryDate
-
 foreach ($euser in $exchusers)
 {
   # Display the next section of the progress, for formatting and matching the data.
   Write-Progress -Activity "Formatting and matching data" -Status ("User: " + $euser.MailboxDisplayName) -PercentComplete ($results.Count / $exchusers.Count * 100)
   $lastlogondate = @()
   $accountexpires = @()
-  
-  # Set the template object to the temporary object we wish to populate.
-  $object = $templateobject | Select-Object *
+  $object = New-Object PSObject
 
   # Grab the first AD object where the DistinguishedName matches between AD and Exchange.
   $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
 
   # Make the lastlogon date look nice for the export. 
-  $object.LastLogon = Get-ADDate $aduser.DS_LastLogon
+  $object | Add-Member -Type NoteProperty -Name LastLogon -Value (Get-ADDate $aduser.DS_LastLogon)
 
   # Same for extensionattribute1, which we use for the users HR number.
   if ($aduser.DS_extensionAttribute1 -ne $null)
   {
-    $object.HRNo = $aduser.DS_extensionAttribute1.ToString().PadLeft(5,'0')
+    $object | Add-Member -Type NoteProperty -Name HRNo -Value ($aduser.DS_extensionAttribute1.ToString().PadLeft(5,'0'))
   }
 
   # Again, make the accountexpires date look nice for export.
-  $object.ExpiryDate = Get-ADDate $aduser.DS_accountExpires
+  $object | Add-Member -Type NoteProperty -Name ExpiryDate -Value (Get-ADDate $aduser.DS_accountExpires)
 
   # Set the rest of the object values.
-  $object.Name = $euser.MailboxDisplayName
-  $object.MailboxSizeinMB = ([math]::Round(($euser.size / 1MB *1KB),2))
-  $object.Disabled = [bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2"))
-  $object.Mail = $aduser.DS_Mail
-  $object.ProxyAddresses = [string]$aduser.DS_proxyAddresses
-  $object.TotalItems = $euser.TotalItems
-  $object.CN = $aduser.DS_CN
+  $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
+  $object | Add-Member -Type NoteProperty -Name MailboxSizeinMB -Value ([math]::Round(($euser.size / 1MB *1KB),2))
+  $object | Add-Member -Type NoteProperty -Name Disabled -Value ([bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2")))
+  $object | Add-Member -Type NoteProperty -Name Mail -Value $aduser.DS_Mail
+  $object | Add-Member -Type NoteProperty -Name ProxyAddresses -Value [string]$aduser.DS_proxyAddresses
+  $object | Add-Member -Type NoteProperty -Name TotalItems -Value $euser.TotalItems
+  $object | Add-Member -Type NoteProperty -Name CN -Value $aduser.DS_CN
   Write-Verbose $object
   $results += $object
 }
