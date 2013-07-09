@@ -5,9 +5,14 @@
 [cmdletbinding()]
 param(
   [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
-  [parameter(Mandatory=$true, Position=2)][string]$ADServerName,
+  [parameter(Mandatory=$false, Position=2)][string]$ADServerName,
   [parameter(Mandatory=$false, Position=3)][string]$OutputFile
 )
+
+if (!$ADServerName)
+{
+  $ADServerName = $ExchServerName
+}
 
 Function Get-ADDate($addate)
 {
