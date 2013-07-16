@@ -7,7 +7,8 @@ param(
   [parameter(Mandatory=$false)][string]$ExchServerName,
   [parameter(Mandatory=$false)][string]$ADServerName,
   [parameter(Mandatory=$false)][switch]$ListEmpty,
-  [parameter(Mandatory=$false)][switch]$ListSystem
+  [parameter(Mandatory=$false)][switch]$ListSystem,
+  [parameter(Mandatory=$false)][switch]$ListNoEmail
 )
 
 if (!$ExchServerName)
@@ -64,13 +65,19 @@ foreach ($euser in $exchusers)
   }
   
   # Do not list system mailboxes, unless -ListSystem is specified.
-  if (!$ListNoMail -and ($euser.MailboxDisplayName -like "SystemMailbox*"))
+  if (!$ListSystem -and ($euser.MailboxDisplayName -like "SystemMailbox*"))
   {
     continue
   }
 
   # Grab the AD object where the DistinguishedName matches between AD and Exchange.
   $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
+
+  # Do not list users with no email address, unless -ListNoEmail is specified.
+  if (!$ListNoMail -and !($aduser.DS_mail))
+  {
+    continue
+  }
 
   # Grab and format the Exchange object values.
   $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
