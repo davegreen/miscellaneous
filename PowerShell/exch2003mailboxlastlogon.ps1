@@ -5,8 +5,8 @@
 [cmdletbinding()]
 param(
   [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
-  [parameter(Mandatory=$false, Position=2)][string]$ADServerName,
-  [parameter(Mandatory=$false, Position=2)][switch]$ListEmpty
+  [parameter(Mandatory=$false)][string]$ADServerName,
+  [parameter(Mandatory=$false)][switch]$ListEmpty
 )
 
 if (!$ADServerName)
