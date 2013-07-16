@@ -4,11 +4,16 @@
 #Grab the exchange server and output file name from args.
 [cmdletbinding()]
 param(
-  [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
+  [parameter(Mandatory=$false)][string]$ExchServerName,
   [parameter(Mandatory=$false)][string]$ADServerName,
   [parameter(Mandatory=$false)][switch]$ListEmpty,
   [parameter(Mandatory=$false)][switch]$ListSystem
 )
+
+if (!$ExchServerName)
+{
+  $ExchServerName = [System.Net.Dns]::GetHostByName(($env:computerName)).HostName
+}
 
 if (!$ADServerName)
 {
