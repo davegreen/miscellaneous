@@ -5,8 +5,7 @@
 [cmdletbinding()]
 param(
   [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
-  [parameter(Mandatory=$false, Position=2)][string]$ADServerName,
-  [parameter(Mandatory=$false, Position=3)][string]$OutputFile
+  [parameter(Mandatory=$false, Position=2)][string]$ADServerName
 )
 
 if (!$ADServerName)
@@ -83,13 +82,4 @@ foreach ($euser in $exchusers)
   $results += $object
 }
 
-# Allow output to CSV, or to the pipeline.
-if ($OutputFile)
-{
-  $results | Export-Csv $OutputFile -NoTypeInformation -NoClobber
-}
-
-else
-{
-  Write-Output $results
-}
+Write-Output $results
