@@ -41,11 +41,12 @@ Write-Verbose "Getting data from WMI on $ADServerName (root\directory\ldap\ds_us
 $adusers = Get-WmiObject -ComputerName $ADServerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN, DS_LastLogon, DS_accountExpires
 Write-Progress -Activity "Preparing Run" -Status "Got WMI Data." -PercentComplete 100
 Write-Verbose "Got AD WMI data."
+$processed = 0
 
 foreach ($euser in $exchusers)
 {
   # Display the next section of the progress, for formatting and matching the data.
-  Write-Progress -Activity "Formatting and matching data" -Status ("User: " + $euser.MailboxDisplayName) -PercentComplete ($results.Count / $exchusers.Count * 100)
+  Write-Progress -Activity "Formatting and matching data" -Status ("User: " + $euser.MailboxDisplayName) -PercentComplete ($processed / $exchusers.Count * 100)
   $lastlogondate = @()
   $accountexpires = @()
   $object = New-Object PSObject
@@ -85,4 +86,5 @@ foreach ($euser in $exchusers)
   }
 
   Write-Output $object
+  $processed++
 }
