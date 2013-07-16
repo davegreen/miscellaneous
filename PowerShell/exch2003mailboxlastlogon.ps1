@@ -41,7 +41,6 @@ Write-Verbose "Getting data from WMI on $ADServerName (root\directory\ldap\ds_us
 $adusers = Get-WmiObject -ComputerName $ADServerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN, DS_LastLogon, DS_accountExpires
 Write-Progress -Activity "Preparing Run" -Status "Got WMI Data." -PercentComplete 100
 Write-Verbose "Got AD WMI data."
-$results = @()
 
 foreach ($euser in $exchusers)
 {
@@ -85,8 +84,5 @@ foreach ($euser in $exchusers)
     }
   }
 
-  Write-Verbose $object
-  $results += $object
+  Write-Output $object
 }
-
-Write-Output $results
