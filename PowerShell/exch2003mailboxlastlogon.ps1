@@ -52,7 +52,13 @@ foreach ($euser in $exchusers)
   $object = New-Object PSObject
 
   # Grab the AD object where the DistinguishedName matches between AD and Exchange.
-  $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
+  $aduser = $adusers | Where-Object {$_.DS_DisplayName -eq $euser.LegacyDN}
+
+  # Do not list empty mailboxes, unless -ListEmpty is specified.
+  if (!$ListEmpty -and ($euser.TotalItems -eq 0))
+  {
+    continue
+  }
 
   # Grab and format the Exchange object values.
   $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
