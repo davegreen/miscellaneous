@@ -68,7 +68,7 @@ foreach ($euser in $exchusers)
   if ($aduser)
   {
     $object | Add-Member -Type NoteProperty -Name Mail -Value $aduser.DS_Mail
-    $object | Add-Member -Type NoteProperty -Name ProxyAddresses -Value [string]$aduser.DS_proxyAddresses
+    $object | Add-Member -Type NoteProperty -Name ProxyAddresses -Value [string]($aduser.DS_proxyAddresses)
     $object | Add-Member -Type NoteProperty -Name Disabled -Value ([bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2")))
 
     # Again, make the accountexpires date look nice for export.
