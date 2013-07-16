@@ -5,7 +5,8 @@
 [cmdletbinding()]
 param(
   [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
-  [parameter(Mandatory=$false, Position=2)][string]$ADServerName
+  [parameter(Mandatory=$false, Position=2)][string]$ADServerName,
+  [parameter(Mandatory=$false, Position=2)][switch]$ListEmpty
 )
 
 if (!$ADServerName)
@@ -50,13 +51,19 @@ foreach ($euser in $exchusers)
   $accountexpires = @()
   $object = New-Object PSObject
 
+  # Grab the AD object where the DistinguishedName matches between AD and Exchange.
+  $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
+
+  # Break if empty mailbox, or no mail address set.
+  if (!$ListEmpty -and ($euser.TotalItems -eq 0 -or !($aduser.DS_Mail)))
+  {
+    break
+  }
+
   # Grab and format the Exchange object values.
   $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
   $object | Add-Member -Type NoteProperty -Name MailboxSizeinMB -Value ([math]::Round(($euser.size / 1MB *1KB),2))
   $object | Add-Member -Type NoteProperty -Name TotalItems -Value $euser.TotalItems
-
-  # Grab the AD object where the DistinguishedName matches between AD and Exchange.
-  $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
 
   # Grab and format the AD object values.
   if ($aduser)
