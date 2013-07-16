@@ -6,7 +6,8 @@
 param(
   [parameter(Mandatory=$true, Position=1)][string]$ExchServerName,
   [parameter(Mandatory=$false)][string]$ADServerName,
-  [parameter(Mandatory=$false)][switch]$ListEmpty
+  [parameter(Mandatory=$false)][switch]$ListEmpty,
+  [parameter(Mandatory=$false)][switch]$ListSystem
 )
 
 if (!$ADServerName)
@@ -51,14 +52,20 @@ foreach ($euser in $exchusers)
   $accountexpires = @()
   $object = New-Object PSObject
 
-  # Grab the AD object where the DistinguishedName matches between AD and Exchange.
-  $aduser = $adusers | Where-Object {$_.DS_DisplayName -eq $euser.LegacyDN}
-
   # Do not list empty mailboxes, unless -ListEmpty is specified.
   if (!$ListEmpty -and ($euser.TotalItems -eq 0))
   {
     continue
   }
+  
+  # Do not list system mailboxes, unless -ListSystem is specified.
+  if (!$ListNoMail -and ($euser.MailboxDisplayName -like "SystemMailbox"))
+  {
+    continue
+  }
+
+  # Grab the AD object where the DistinguishedName matches between AD and Exchange.
+  $aduser = $adusers | Where-Object {$_.DS_DisplayName -eq $euser.LegacyDN}
 
   # Grab and format the Exchange object values.
   $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
