@@ -64,7 +64,7 @@ foreach ($euser in $exchusers)
   }
   
   # Do not list system mailboxes, unless -ListSystem is specified.
-  if (!$ListNoMail -and ($euser.MailboxDisplayName -like "SystemMailbox"))
+  if (!$ListNoMail -and ($euser.MailboxDisplayName -like "SystemMailbox*"))
   {
     continue
   }
