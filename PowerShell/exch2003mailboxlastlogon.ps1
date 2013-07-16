@@ -54,12 +54,6 @@ foreach ($euser in $exchusers)
   # Grab the AD object where the DistinguishedName matches between AD and Exchange.
   $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
 
-  # Break if empty mailbox, or no mail address set.
-  if (!$ListEmpty -and ($euser.TotalItems -eq 0 -or !($aduser.DS_Mail)))
-  {
-    break
-  }
-
   # Grab and format the Exchange object values.
   $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
   $object | Add-Member -Type NoteProperty -Name MailboxSizeinMB -Value ([math]::Round(($euser.size / 1MB *1KB),2))
