@@ -70,7 +70,7 @@ foreach ($euser in $exchusers)
   }
 
   # Grab the AD object where the DistinguishedName matches between AD and Exchange.
-  $aduser = $adusers | Where-Object {$_.DS_DisplayName -eq $euser.MailboxDisplayName}
+  $aduser = $adusers | Where-Object {$_.DS_legacyExchangeDN -eq $euser.LegacyDN}
 
   # Grab and format the Exchange object values.
   $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
