@@ -45,7 +45,7 @@ $exchusers = Get-WmiObject -ComputerName $ExchServerName -Namespace root\Microso
 Write-Verbose "Got Exchange WMI data."
 Write-Progress -Activity "Preparing Run" -Status "Getting data from WMI on $ADServerName" -PercentComplete 50
 Write-Verbose "Getting data from WMI on $ADServerName (root\directory\ldap\ds_user)"
-$adusers = Get-WmiObject -ComputerName $ADServerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN, DS_LastLogon, DS_accountExpires
+$adusers = Get-WmiObject -ComputerName $ADServerName -Namespace root\directory\ldap -Class ds_user | Select-Object DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, DS_extensionAttribute1, DS_CN, DS_LastLogonTimeStamp, DS_accountExpires
 Write-Progress -Activity "Preparing Run" -Status "Got WMI Data." -PercentComplete 100
 Write-Verbose "Got AD WMI data."
 $processed = 0
@@ -95,7 +95,7 @@ foreach ($euser in $exchusers)
     $object | Add-Member -Type NoteProperty -Name ExpiryDate -Value (Get-ADDate $aduser.DS_accountExpires)
 
     # Make the lastlogon date look nice for the export. 
-    $object | Add-Member -Type NoteProperty -Name LastLogon -Value (Get-ADDate $aduser.DS_LastLogon)
+    $object | Add-Member -Type NoteProperty -Name LastLogon -Value (Get-ADDate $aduser.DS_LastLogonTimestamp)
 
     # Same for extensionattribute1, which we use for the users HR number.
     if ($aduser.DS_extensionAttribute1 -ne $null)
