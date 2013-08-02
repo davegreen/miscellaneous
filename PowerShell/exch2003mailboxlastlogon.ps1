@@ -23,14 +23,14 @@ if (!$ADServerName)
 
 Function Get-ADDate($addate)
 {
-  if (($addate -ne $null) -and ($addate -ne "0") -and ($addate -ne "9223372036854775807"))
+  Try
   {
     $formatteddate = [datetime]::FromFileTime($addate).Date.ToString()
   }
 
-  else
+  Catch
   {
-    [string]$formatteddate = "Never"
+    $formatteddate = "Never"
   }
 
   return $formatteddate
