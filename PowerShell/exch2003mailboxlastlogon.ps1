@@ -23,6 +23,8 @@ if (!$ADServerName)
   $ADServerName = $ExchServerName
 }
 
+# Returns a date string based on an AD attribute (like lastlogon, or accountexpires).
+# Param1: $addate - AD attribute date value.
 Function Get-ADDate($addate)
 {
   Try
