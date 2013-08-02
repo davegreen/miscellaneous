@@ -1,4 +1,44 @@
-﻿# Modified by Dave Green (david.green@tookitaway.co.uk) from a script originally by Gary Siepser, Microsoft Premier Field Engineer.
+﻿<# 
+  .Synopsis
+  Uses WMI to get Exchange and AD data about users and mailboxes.
+
+  .Description
+  Gets LegacyDN, MailboxDisplayName, Size, TotalItems for Exchange
+  and DS_legacyExchangeDN, DS_proxyAddresses, DS_mail, DS_userAccountControl, 
+  DS_extensionAttribute1, DS_CN, DS_LastLogonTimeStamp, DS_accountExpires for AD.
+    
+  .Parameter ExchServerName
+  The hostname of the Exchange server to query.
+
+  .Parameter ADServerName
+  The hostname of the AD server to query. If no AD domain controller is specified, use the exchange server hostname.
+
+  .Parameter ListEmpty
+  Do not list empty mailboxes, unless -ListEmpty is specified.
+
+  .Parameter ListSystem
+  # Do not list system mailboxes, unless -ListSystem is specified.
+
+  .Parameter ListNoEmail
+  # Do not list users with no email address, unless -ListNoEmail is specified.
+
+  .Example
+  .\exch2003mailboxlastlogon.ps1 -ListEmpty -ListNoEmail
+  Get the data from the machine running the script. List both Empty mailboxes and users with no mail address.
+
+  .Example
+  .\exch2003mailboxlastlogon.ps1 -ExchServerName Exchange1.contoso.com
+  Query the server 'Exchange1.contoso.com'
+        
+  .Notes
+  Name  : exch2003mailboxlastlogon
+  Author: David Green
+  
+  .Link
+  http://www.tookitaway.co.uk
+#>
+
+# Modified by Dave Green (david.green@tookitaway.co.uk) from a script originally by Gary Siepser, Microsoft Premier Field Engineer.
 # (http://blogs.technet.com/b/gary/archive/2009/09/16/list-mailbox-sizes-for-both-exchange-2003-and-exchange-2007.aspx)
 
 #Grab the exchange server and output file name from args.
