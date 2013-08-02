@@ -25,8 +25,7 @@ Function Get-ADDate($addate)
 {
   if (($addate -ne $null) -and ($addate -ne "0") -and ($addate -ne "9223372036854775807"))
   {
-    [datetime]$datetime = $addate
-    [string]$formatteddate = $datetime.AddYears(1600).Date.ToString()
+    $formatteddate = [datetime]::FromFileTime($addate).Date.ToString()
   }
 
   else
