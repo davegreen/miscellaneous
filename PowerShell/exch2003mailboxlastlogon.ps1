@@ -11,11 +11,13 @@ param(
   [parameter(Mandatory=$false)][switch]$ListNoEmail
 )
 
+# Get the hostname of the current machine, if no exchange server hostname was specified in the parameters.
 if (!$ExchServerName)
 {
   $ExchServerName = [System.Net.Dns]::GetHostByName(($env:computerName)).HostName
 }
 
+# If no AD domain controller is specified, use the exchange server hostname.
 if (!$ADServerName)
 {
   $ADServerName = $ExchServerName
