@@ -41,7 +41,6 @@
 # Modified by Dave Green (david.green@tookitaway.co.uk) from a script originally by Gary Siepser, Microsoft Premier Field Engineer.
 # (http://blogs.technet.com/b/gary/archive/2009/09/16/list-mailbox-sizes-for-both-exchange-2003-and-exchange-2007.aspx)
 
-#Grab the exchange server and output file name from args.
 [cmdletbinding()]
 param(
   [parameter(Mandatory=$false)][string]$ExchServerName,
