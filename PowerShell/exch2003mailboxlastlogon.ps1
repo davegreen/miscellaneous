@@ -43,24 +43,16 @@
 
 [cmdletbinding()]
 param(
-  [parameter(Mandatory=$false)][string]$ExchServerName,
-  [parameter(Mandatory=$false)][string]$ADServerName,
+
+  # The hostname of the Exchange server. If this is not specified, the current machine hostname will be used.
+  [parameter(Mandatory=$false)][string]$ExchServerName = ([System.Net.Dns]::GetHostByName(($env:computerName)).HostName),
+
+  # The hostname of an AD Domain controller in the same domain as the Exchange server. If this is not specified, the Exchange server name will be used.
+  [parameter(Mandatory=$false)][string]$ADServerName = $ExchServerName,
   [parameter(Mandatory=$false)][switch]$ListEmpty,
   [parameter(Mandatory=$false)][switch]$ListSystem,
   [parameter(Mandatory=$false)][switch]$ListNoEmail
 )
-
-# Get the hostname of the current machine, if no exchange server hostname was specified in the parameters.
-if (!$ExchServerName)
-{
-  $ExchServerName = [System.Net.Dns]::GetHostByName(($env:computerName)).HostName
-}
-
-# If no AD domain controller is specified, use the exchange server hostname.
-if (!$ADServerName)
-{
-  $ADServerName = $ExchServerName
-}
 
 # Returns a date string based on an AD attribute (like lastlogon, or accountexpires).
 # Param1: $addate - AD attribute date value.
