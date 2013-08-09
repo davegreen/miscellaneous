@@ -91,12 +91,14 @@ foreach ($euser in $exchusers)
   # Do not list empty mailboxes, unless -ListEmpty is specified.
   if (!$ListEmpty -and ($euser.TotalItems -eq 0))
   {
+    Write-Verbose "Skipping empty mailbox"
     continue
   }
   
   # Do not list system mailboxes, unless -ListSystem is specified.
   if (!$ListSystem -and ($euser.MailboxDisplayName -like "SystemMailbox*"))
   {
+    Write-Verbose "Skipping system mailbox"
     continue
   }
 
@@ -106,6 +108,7 @@ foreach ($euser in $exchusers)
   # Do not list users with no email address, unless -ListNoEmail is specified.
   if (!$ListNoMail -and !($aduser.DS_mail))
   {
+    Write-Verbose "Skipping user with no mail address"
     continue
   }
 
