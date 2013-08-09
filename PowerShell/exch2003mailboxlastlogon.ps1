@@ -8,7 +8,7 @@
   DS_extensionAttribute1, DS_CN, DS_LastLogonTimeStamp, DS_accountExpires for AD.
     
   .Parameter ExchServerName
-  The hostname of the Exchange server to query.
+  The hostname of the Exchange server to query. If this is not specified, the current machine hostname will be used.
 
   .Parameter ADServerName
   The hostname of the AD server to query. If no AD domain controller is specified, use the exchange server hostname.
@@ -17,10 +17,10 @@
   Do not list empty mailboxes, unless -ListEmpty is specified.
 
   .Parameter ListSystem
-  # Do not list system mailboxes, unless -ListSystem is specified.
+  Do not list system mailboxes, unless -ListSystem is specified.
 
   .Parameter ListNoEmail
-  # Do not list users with no email address, unless -ListNoEmail is specified.
+  Do not list users with no email address, unless -ListNoEmail is specified.
 
   .Example
   .\exch2003mailboxlastlogon.ps1 -ListEmpty -ListNoEmail
@@ -43,11 +43,7 @@
 
 [cmdletbinding()]
 param(
-
-  # The hostname of the Exchange server. If this is not specified, the current machine hostname will be used.
   [parameter(Mandatory=$false)][string]$ExchServerName = ([System.Net.Dns]::GetHostByName(($env:computerName)).HostName),
-
-  # The hostname of an AD Domain controller in the same domain as the Exchange server. If this is not specified, the Exchange server name will be used.
   [parameter(Mandatory=$false)][string]$ADServerName = $ExchServerName,
   [parameter(Mandatory=$false)][switch]$ListEmpty,
   [parameter(Mandatory=$false)][switch]$ListSystem,
