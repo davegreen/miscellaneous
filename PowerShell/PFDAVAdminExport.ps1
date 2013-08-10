@@ -30,7 +30,7 @@
 [cmdletbinding()]
 param(
   [parameter(Mandatory=$true, HelpMessage="The location of the PFDAVAdmin export (Tab delimited text file).")][string]$PFDAVAdminFile,
-  [parameter(Mandatory=$false)][int]$MaxColumns
+  [int]$MaxColumns
 )
 
 if (!$MaxColumns)
