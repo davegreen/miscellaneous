@@ -43,7 +43,7 @@
 
 [cmdletbinding()]
 param(
-  [parameter(Mandatory=$false)][string]$ExchServerName = ([System.Net.Dns]::GetHostByName(($env:computerName)).HostName),
+  [parameter(Mandatory=$false)][string]$ExchServerName = "localhost",
   [parameter(Mandatory=$false)][string]$ADServerName = $ExchServerName,
   [parameter(Mandatory=$false)][switch]$ListEmpty,
   [parameter(Mandatory=$false)][switch]$ListSystem,
