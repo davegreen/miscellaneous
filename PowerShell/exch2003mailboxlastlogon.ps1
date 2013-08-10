@@ -43,11 +43,11 @@
 
 [cmdletbinding()]
 param(
-  [parameter(Mandatory=$false)][string]$ExchServerName = "localhost",
-  [parameter(Mandatory=$false)][string]$ADServerName = $ExchServerName,
-  [parameter(Mandatory=$false)][switch]$ListEmpty,
-  [parameter(Mandatory=$false)][switch]$ListSystem,
-  [parameter(Mandatory=$false)][switch]$ListNoEmail
+  [string]$ExchServerName = "localhost",
+  [string]$ADServerName = $ExchServerName,
+  [switch]$ListEmpty,
+  [switch]$ListSystem,
+  [switch]$ListNoEmail
 )
 
 # Returns a date string based on an AD attribute (like lastlogon, or accountexpires).
