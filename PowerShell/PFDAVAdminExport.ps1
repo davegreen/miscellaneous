@@ -29,14 +29,10 @@
 
 [cmdletbinding()]
 param(
-  [parameter(Mandatory=$true, HelpMessage="The location of the PFDAVAdmin export (Tab delimited text file).")][string]$PFDAVAdminFile,
-  [parameter()][int]$MaxColumns
+  [parameter(Mandatory=$true, HelpMessage="The location of the PFDAVAdmin export (Tab delimited text file).")]
+    [string]$PFDAVAdminFile,
+  [parameter()][int]$MaxColumns = 40
 )
-
-if (!$MaxColumns)
-{
-  $MaxColumns = 40
-}
 
 Write-Progress -Activity "Loading PFDAVAdmin file and preparing run." -Status ("Loading " + $PFDAVAdminFile) -PercentComplete 0
 $a = 1..$MaxColumns
