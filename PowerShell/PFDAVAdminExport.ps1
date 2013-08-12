@@ -57,15 +57,15 @@ foreach ($row in $PFDAVExport)
         # Ignore Anonymous, UNKNOWN and NO fields, then grab the user and permission set..
         if (($col % 2 -eq 1) -and ($row.$col -ne "Anonymous") -and ($row.$col -ne "NO") -and ($row.$col -ne "UNKNOWN"))
         {
-          $object = New-Object PSObject
           $user = (($row.$col).Split("=") | Select-Object -Last 1).Trim()
-          $object | Add-Member -Type NoteProperty -Name Name -Value $name
-          $object | Add-Member -Type NoteProperty -Name User -Value $user
-          $object | Add-Member -Type NoteProperty -Name Permissions -Value ($row.($col + 1))
           
           # Don't include the users permission over their own mailbox.
           if (!($name.Contains($user)) -and (($row.($col + 1)) -ne "None"))
           {
+            $object = New-Object PSObject
+            $object | Add-Member -Type NoteProperty -Name Name -Value $name
+            $object | Add-Member -Type NoteProperty -Name User -Value $user
+            $object | Add-Member -Type NoteProperty -Name Permissions -Value ($row.($col + 1))
             Write-Output $object
           }
         }
