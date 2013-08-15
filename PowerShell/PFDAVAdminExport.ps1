@@ -62,10 +62,13 @@ foreach ($row in $PFDAVExport)
           # Don't include the users permission over their own mailbox.
           if (!($name.Contains($user)) -and (($row.($col + 1)) -ne "None"))
           {
-            $object = New-Object PSObject
-            $object | Add-Member -Type NoteProperty -Name Name -Value $name
-            $object | Add-Member -Type NoteProperty -Name User -Value $user
-            $object | Add-Member -Type NoteProperty -Name Permissions -Value ($row.($col + 1))
+            $htable = @{
+              "Name" = $name
+              "User" = $user
+              "Permissions" = ($row.($col + 1))
+            }
+
+            $object = New-Object PSObject -Property $htable
             Write-Output $object
           }
         }
