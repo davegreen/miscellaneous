@@ -86,7 +86,6 @@ foreach ($euser in $exchusers)
   Write-Progress -Activity "Formatting and matching data" -Status ("User: " + $euser.MailboxDisplayName) -PercentComplete ($processed / $exchusers.Count * 100)
   $lastlogondate = @()
   $accountexpires = @()
-  $object = New-Object PSObject
 
   # Do not list empty mailboxes, unless -ListEmpty is specified.
   if (!$ListEmpty -and ($euser.TotalItems -eq 0))
@@ -113,30 +112,33 @@ foreach ($euser in $exchusers)
   }
 
   # Grab and format the Exchange object values.
-  $object | Add-Member -Type NoteProperty -Name Name -Value $euser.MailboxDisplayName
-  $object | Add-Member -Type NoteProperty -Name MailboxSizeinMB -Value ([math]::Round(($euser.size / 1MB *1KB),2))
-  $object | Add-Member -Type NoteProperty -Name TotalItems -Value $euser.TotalItems
+  $htable = @{
+    "Name" = $euser.MailboxDisplayName
+    "MailboxSizeinMB" = ([math]::Round(($euser.size / 1MB *1KB),2))
+    "TotalItems" = $euser.TotalItems
+  }
 
   # Grab and format the AD object values.
   if ($aduser)
   {
-    $object | Add-Member -Type NoteProperty -Name Mail -Value $aduser.DS_Mail
-    $object | Add-Member -Type NoteProperty -Name ProxyAddresses -Value ([string]($aduser.DS_proxyAddresses))
-    $object | Add-Member -Type NoteProperty -Name Disabled -Value ([bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2")))
+    $htable.Add("Mail", $aduser.DS_Mail)
+    $htable.Add("ProxyAddresses", ([string]($aduser.DS_proxyAddresses)))
+    $htable.Add("Disabled", ([bool](([string]::Format("{0:x}", $aduser.DS_userAccountControl)).EndsWith("2"))))
 
     # Again, make the accountexpires date look nice for export.
-    $object | Add-Member -Type NoteProperty -Name ExpiryDate -Value (Get-ADDate $aduser.DS_accountExpires)
+    $htable.Add("ExpiryDate", (Get-ADDate $aduser.DS_accountExpires))
 
     # Make the lastlogon date look nice for the export. 
-    $object | Add-Member -Type NoteProperty -Name LastLogon -Value (Get-ADDate $aduser.DS_LastLogonTimestamp)
+    $htable.Add("LastLogon", (Get-ADDate $aduser.DS_LastLogonTimestamp))
 
     # Same for extensionattribute1, which we use for the users HR number.
     if ($aduser.DS_extensionAttribute1 -ne $null)
     {
-      $object | Add-Member -Type NoteProperty -Name HRNo -Value ($aduser.DS_extensionAttribute1.ToString().PadLeft(5,'0'))
+      $htable.Add("HRNo", ($aduser.DS_extensionAttribute1.ToString().PadLeft(5,'0')))
     }
   }
 
+  $object = New-Object PSObject -Property $htable
   Write-Output $object
   $processed++
 }
