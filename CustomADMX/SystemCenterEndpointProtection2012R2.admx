@@ -1068,5 +1068,15 @@
         <text id="ux_configuration_customdefaultactiontoaststring" valueName="CustomDefaultActionToastString" required="true" />
       </elements>
     </policy>
+	<policy name="ux_configuration_clientui_lockdown" class="Machine" displayName="$(string.ux_configuration_clientui_lockdown)" explainText="$(string.ux_configuration_clientui_lockdown_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\UX Configuration" valueName="UILockdown">
+      <parentCategory ref="client_interface" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
+    </policy>
   </policies>
 </policyDefinitions>
