@@ -657,6 +657,12 @@ If you disable this setting, notifications will not be displayed to clients when
 If you enable this setting, the additional text specified will be displayed.
 
 If you disable or do not configure this setting, there will be no additional text displayed.</string>
+		<string id="ux_configuration_clientui_lockdown">Disable the client user interface</string>
+		<string id="ux_configuration_clientui_lockdown_explain">This policy setting allows you to configure whether or not the client user interface will be disabled. 
+		
+Enabling this setting will prevent the client user interface from being started.
+
+If you disable or do not configure this setting, the client user interface will be available.</string>		
     </stringTable>
     <presentationTable>
       <presentation id="system_center_endpoint_protection_2012_r2_proxybypass">
