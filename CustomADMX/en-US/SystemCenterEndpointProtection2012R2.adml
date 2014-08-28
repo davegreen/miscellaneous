@@ -453,11 +453,11 @@ This setting can be configured with the following ordinal number values:
 (0x1) Sunday 
 (0x2) Monday
 (0x3) Tuesday
-(0x4) Wednesday
+(0x4) Wednesday (default)
 (0x5) Thursday
 (0x6) Friday
 (0x7) Saturday
-(0x8) Never (default)
+(0x8) Never
 
 If you enable this setting, a scheduled scan will run at the frequency specified.
 
@@ -754,7 +754,7 @@ If you disable or do not configure this setting, the client user interface will 
         <dropdownList refId="scan_scanparameters" noSort="true" defaultItem="0">Specify the scan type to use for a scheduled scan</dropdownList>
       </presentation>
       <presentation id="scan_scheduleday">
-        <dropdownList refId="scan_scheduleday" noSort="true" defaultItem="0">Specify the day of the week to run a scheduled scan</dropdownList>
+        <dropdownList refId="scan_scheduleday" noSort="true" defaultItem="4">Specify the day of the week to run a scheduled scan</dropdownList>
       </presentation>
       <presentation id="scan_schedulequickscantime">
         <decimalTextBox refId="scan_schedulequickscantime" defaultValue="120">Specify the time for a daily quick scan</decimalTextBox>
