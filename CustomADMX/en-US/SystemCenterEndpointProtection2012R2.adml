@@ -628,7 +628,7 @@ Valid remediation action values are:
 2 = Quarantine
 3 = Remove
 6 = Ignore</string>
-      <string id="threats_threatseveritydefaultaction">Specify threat alert levels at which default action should not be taken when detected</string>
+      <string id="threats_threatseveritydefaultaction">Specify the default action for each threat alert level</string>
       <string id="threats_threatseveritydefaultaction_explain">This policy setting allows you to customize which automatic remediation action will be taken for each threat alert level.Threat alert levels should be added under the Options for this setting. Each entry must be listed as a name value pair. The name defines a threat alert level. The value contains the action ID for the remediation action that should be taken.
 
 Valid threat alert levels are:
