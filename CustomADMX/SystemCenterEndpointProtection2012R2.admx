@@ -46,7 +46,7 @@
     </category>
   </categories>
   <policies>
-    <policy name="system_center_endpoint_protection_2012_r2_allowfastservicestartup" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_allowfastservicestartup)" explainText="$(string.system_center_endpoint_protection_2012_r2_allowfastservicestartup_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="AllowFastServiceStartup">
+    <policy name="system_center_endpoint_protection_2012_r2_allowfastservicestartup" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_allowfastservicestartup)" explainText="$(string.system_center_endpoint_protection_2012_r2_allowfastservicestartup_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="AllowFastServiceStartup">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -56,7 +56,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_disableantispyware" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disableantispyware)" explainText="$(string.system_center_endpoint_protection_2012_r2_disableantispyware_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="DisableAntiSpyware">
+    <policy name="system_center_endpoint_protection_2012_r2_disableantispyware" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disableantispyware)" explainText="$(string.system_center_endpoint_protection_2012_r2_disableantispyware_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="DisableAntiSpyware">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -66,7 +66,7 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_disableantivirus" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disableantivirus)" explainText="$(string.system_center_endpoint_protection_2012_r2_disableantivirus_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="DisableAntiVirus">
+    <policy name="system_center_endpoint_protection_2012_r2_disableantivirus" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disableantivirus)" explainText="$(string.system_center_endpoint_protection_2012_r2_disableantivirus_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="DisableAntiVirus">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -76,7 +76,7 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_disablelocaladminmerge" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disablelocaladminmerge)" explainText="$(string.system_center_endpoint_protection_2012_r2_disablelocaladminmerge_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="DisableLocalAdminMerge">
+    <policy name="system_center_endpoint_protection_2012_r2_disablelocaladminmerge" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disablelocaladminmerge)" explainText="$(string.system_center_endpoint_protection_2012_r2_disablelocaladminmerge_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="DisableLocalAdminMerge">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -86,7 +86,7 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_disableroutinelytakingaction" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disableroutinelytakingaction)" explainText="$(string.system_center_endpoint_protection_2012_r2_disableroutinelytakingaction_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="DisableRoutinelyTakingAction">
+    <policy name="system_center_endpoint_protection_2012_r2_disableroutinelytakingaction" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_disableroutinelytakingaction)" explainText="$(string.system_center_endpoint_protection_2012_r2_disableroutinelytakingaction_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="DisableRoutinelyTakingAction">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -96,21 +96,21 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_proxybypass" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxybypass)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxybypass_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="ProxyBypass" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxybypass)">
+    <policy name="system_center_endpoint_protection_2012_r2_proxybypass" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxybypass)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxybypass_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="ProxyBypass" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxybypass)">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <text id="system_center_endpoint_protection_2012_r2_proxybypass" valueName="ProxyBypass" required="true" />
       </elements>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_proxyserver" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxyserver)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxyserver_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="ProxyServer" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxyserver)">
+    <policy name="system_center_endpoint_protection_2012_r2_proxyserver" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxyserver)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxyserver_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="ProxyServer" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxyserver)">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <text id="system_center_endpoint_protection_2012_r2_proxyserver" valueName="ProxyServer" required="true" />
       </elements>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_randomizescheduletasktimes" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_randomizescheduletasktimes)" explainText="$(string.system_center_endpoint_protection_2012_r2_randomizescheduletasktimes_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="RandomizeScheduleTaskTimes">
+    <policy name="system_center_endpoint_protection_2012_r2_randomizescheduletasktimes" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_randomizescheduletasktimes)" explainText="$(string.system_center_endpoint_protection_2012_r2_randomizescheduletasktimes_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="RandomizeScheduleTaskTimes">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
@@ -120,7 +120,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_servicekeepalive" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_servicekeepalive)" explainText="$(string.system_center_endpoint_protection_2012_r2_servicekeepalive_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\" valueName="ServiceKeepAlive">
+    <policy name="system_center_endpoint_protection_2012_r2_servicekeepalive" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_servicekeepalive)" explainText="$(string.system_center_endpoint_protection_2012_r2_servicekeepalive_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="ServiceKeepAlive">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <enabledValue>
