@@ -1,3 +1,29 @@
+<# 
+    .Synopsis
+    Uses AX PowerShell cmdlets to Export AX user data.
+
+    .Description
+    Uses AX PowerShell cmdlets to Export AX user data. This script works with the corresponding Import-AXUser script.
+
+    .Parameter CsvFile
+    The path to the CSV file to export user data to.
+
+    .Example
+    .\Export-AXUser.ps1 -CsvFile .\Users.csv
+    Export users to a CSV file called Users.csv in the current directory.
+        
+    .Notes
+    Name  : Export-AXUser.ps1
+    Author: David Green
+  
+    .Link
+    http://www.tookitaway.co.uk
+    https://github.com/davegreen/miscellaneous.git
+#>
+
+# The Setup-Management and Import-AXModule portaions of theis script are from a script originally by Vishy (http://vgrandhi.wordpress.com).
+# (http://vgrandhi.wordpress.com/2014/04/22/ax-2012-powershell-script-to-export-users-and-roles/)
+
 [CmdletBinding()]
 Param
 (   [Parameter(Mandatory=$false,
