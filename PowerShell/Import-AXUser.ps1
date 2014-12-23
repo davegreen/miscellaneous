@@ -4,7 +4,6 @@ Param
     [Parameter(Mandatory=$true,
     ParameterSetName='CSV')]
     [string]$CsvFile = "Users.csv",
-    [switch]$EnableAll,
     [switch]$DefaultCompany,
     [switch]$NoClobber
 )
