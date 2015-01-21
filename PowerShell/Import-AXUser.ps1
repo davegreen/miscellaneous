@@ -132,6 +132,8 @@ $AXUserId = $null
 
 foreach ($user in $Users)
 {
+    $NClobber = $NoClobber
+
     if ($user.UserName.length -gt 8)
     {
         $AXUserId = ($user.UserName.SubString(0,7) + $user.UserName.substring($user.UserName.length -1))
@@ -147,19 +149,28 @@ foreach ($user in $Users)
 
     if ($AXUsers.UserName -notcontains $user.UserName)
     {
-        if ($DefaultCompany)
+        try
         {
-            Write-Verbose "Creating User $($user.UserName) ($($user.Name))."
-            New-AXUser -AccountType $user.AccountType -AXUserId $AXUserId -UserDomain $UserDomain -UserName $user.UserName
-        }
+            if ($DefaultCompany)
+            {
+                Write-Verbose "Creating User $($user.UserName) ($($user.Name))."
+                New-AXUser -AccountType $user.AccountType -AXUserId $AXUserId -UserDomain $UserDomain -UserName $user.UserName
+            }
 
-        else
-        {
-            Write-Verbose "Creating User $($user.UserName) ($($user.Name)) in company $($user.Company)."
-            New-AXUser -AccountType $user.AccountType -AXUserId $AXUserId -UserDomain $UserDomain -UserName $user.UserName -Company $user.Company
-        }
+            else
+            {
+                Write-Verbose "Creating User $($user.UserName) ($($user.Name)) in company $($user.Company)."
+                New-AXUser -AccountType $user.AccountType -AXUserId $AXUserId -UserDomain $UserDomain -UserName $user.UserName -Company $user.Company
+            }
 
-        Set-AxSecurity
+            Set-AxSecurity
+         }
+
+         catch
+         {
+            Write-Warning "Could not add user $($user.UserName) ($($user.Name))"
+            $NClobber = $true
+         }
     }
 
     else
@@ -167,7 +178,7 @@ foreach ($user in $Users)
         Write-Verbose "User $($user.UserName) ($($user.Name)) already exists."
     }
 
-    if (!$NoClobber)
+    if (!$NClobber)
     {
         Set-AxSecurity
     }
