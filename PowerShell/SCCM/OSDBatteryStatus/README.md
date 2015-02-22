@@ -8,3 +8,5 @@ You will also need to perform the following steps to work with SCCM.
 - Add a ‘Run Command Line’ task in your task sequence, then use the package created  in the previous step, along with a command line like:
 
 > ServiceUI.exe -process:TSProgressUI.exe %SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File OSDBatteryStatus.ps1
+
+You can also use the ‘OSDBatteryStatus.cmd’ file provided, which contains detection for which copy of ‘ServiceUI.exe’ to run.
