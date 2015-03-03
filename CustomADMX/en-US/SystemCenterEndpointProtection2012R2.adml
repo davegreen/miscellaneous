@@ -274,7 +274,9 @@ If you disable or do not configure this setting, a scheduled full scan to comple
 
 If you enable or do not configure this setting, Watson events will be sent.
 
-If you disable this setting, Watson events will not be sent.</string>
+If you disable this setting, Watson events will not be sent.
+
+This value has been deprecated as of the February 2015 anti-malware platform update (http://support.microsoft.com/kb/3036437).</string>
       <string id="reporting_noncriticaltimeout">Configure time out for detections in non-critical failed state</string>
       <string id="reporting_noncriticaltimeout_explain">This policy setting configures the time in minutes before a detection in the "non-critically failed" state moves to the "cleared" state.</string>
       <string id="reporting_recentlycleanedtimeout">Configure time out for detections in recently remediated state</string>
