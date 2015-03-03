@@ -1037,6 +1037,29 @@
         </enum>
       </elements>
     </policy>
+    <policy name="maps_submitsamplesconsent" class="Machine" displayName="$(string.maps_submitsamplesconsent)" explainText="$(string.maps_submitsamplesconsent_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\SpyNet" valueName="SubmitSamplesConsent" presentation="$(presentation.maps_submitsamplesconsent)">
+      <parentCategory ref="maps" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <elements>
+        <enum id="maps_submitsamplesconsent" valueName="SubmitSamplesConsent" required="true">
+          <item displayName="$(string.maps_submitsamplesconsent_0)">
+            <value>
+              <decimal value="0" />
+            </value>
+          </item>
+          <item displayName="$(string.maps_submitsamplesconsent_1)">
+            <value>
+              <decimal value="1" />
+            </value>
+          </item>
+          <item displayName="$(string.maps_submitsamplesconsent_2)">
+            <value>
+              <decimal value="2" />
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
     <policy name="threats_threatiddefaultaction" class="Machine" displayName="$(string.threats_threatiddefaultaction)" explainText="$(string.threats_threatiddefaultaction_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Threats" valueName="threats_threatiddefaultaction" presentation="$(presentation.threats_threatiddefaultaction)">
       <parentCategory ref="threats" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
