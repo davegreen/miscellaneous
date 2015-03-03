@@ -811,6 +811,9 @@ If you disable or do not configure this setting, the client user interface will 
       <presentation id="maps_mapsreporting">
         <dropdownList refId="maps_mapsreporting" noSort="true" defaultItem="0">Join Microsoft Active Protection Service (MAPS)</dropdownList>
       </presentation>
+      <presentation id="maps_submitsamplesconsent">
+        <dropdownList refId="maps_submitsamplesconsent" noSort="true" defaultItem="0">Send file samples when further analysis is required</dropdownList>
+      </presentation>
       <presentation id="threats_threatiddefaultaction">
         <listBox refId="threats_threatiddefaultactionList">Specify threats upon which default action should not be taken when detected</listBox>
       </presentation>
