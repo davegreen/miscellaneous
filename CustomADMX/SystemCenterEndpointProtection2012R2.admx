@@ -1057,6 +1057,11 @@
               <decimal value="2" />
             </value>
           </item>
+          <item displayName="$(string.maps_submitsamplesconsent_3)">
+            <value>
+              <decimal value="3" />
+            </value>
+          </item>
         </enum>
       </elements>
     </policy>
