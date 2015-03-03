@@ -623,6 +623,22 @@ If you disable or do not configure this setting, you will not join Microsoft Act
       <string id="maps_mapsreporting_0">Disabled</string>
       <string id="maps_mapsreporting_1">Basic Membership</string>
       <string id="maps_mapsreporting_2">Advanced Membership</string>
+      <string id="maps_submitsamplesconsent">Send file samples when further analysis is required.</string>
+      <string id="maps_submitsamplesconsent_explain">This policy setting allows you to configure automatic sample submission to the Microsoft Active Protection Service (MAPS).
+
+You can choose when to prompt the user for sample submissions, or disable sample submission. Additional information helps Microsoft create new definitions and help it to protect your computer. This information can include things like location of detected items on your computer if harmful software was removed. The information will be automatically collected and sent. In some instances, personal information might unintentionally be sent to Microsoft. However, Microsoft will not use this information to identify you or contact you.
+
+Possible options are:
+Automatic sample submission disabled. End-users will always be prompted for samples (default) (0x0)
+Most samples will be sent automatically. Files that are likely to contain personal information will still prompt and require additional confirmation (0x1)
+All sample submission disabled. Samples will never be sent and end-users will never be prompted (0x2)
+All samples will be sent automatically. All files determined to require further analysis will be sent automatically without prompting (0x3)
+
+If you disable or do not configure this setting, the user will be prompted to send samples to the Microsoft Active Protection Service (MAPS).</string>
+      <string id="maps_submitsamplesconsent_0">Automatic submission disabled - Always prompt</string>
+      <string id="maps_submitsamplesconsent_1">Enabled - Prompt for samples that contain personal information</string>
+      <string id="maps_submitsamplesconsent_2">All submission disabled - Never prompt</string>
+      <string id="maps_submitsamplesconsent_3">Enabled - Always send samples without prompting</string>
       <string id="threats_threatiddefaultaction">Specify threats upon which default action should not be taken when detected</string>
       <string id="threats_threatiddefaultaction_explain">This policy setting customize which remediation action will be taken for each listed Threat ID when it is detected during a scan. Threats should be added under the Options for this setting. Each entry must be listed as a name value pair. The name defines a valid Threat ID, while the value contains the action ID for the remediation action that should be taken.
 
