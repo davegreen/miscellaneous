@@ -9,8 +9,8 @@ Workflow Check-Service
     
     if ($ServiceCount -gt $Computer.Count)
     {
-        Write-Error "Service count is greater than computer count."
-        exit
+        Write-Warning "Service count is greater than computer count. Service count is now $($Computer.Count)"
+        $ServiceCount = $Computer.Count
     }
 
     $service = Get-WmiObject -Class Win32_Service -Filter "Name = '$ServiceName'" -PSComputerName $Computer
@@ -61,8 +61,8 @@ Workflow Check-Service
         The service name to manage.
 
         .Parameter ServiceCount <integer>
-        The amount of services in the group that the script should aim to have runnnig at the end.
-        This defaults to 1.
+        The amount of services in the group that the script should aim to have runnnig at the end. This defaults to 1. 
+        If a value larger than the total amount of computer is selected, as many will be started as possible.
 
         .Example
         Check-Service -Computer TEST_PC -ServiceName bits
