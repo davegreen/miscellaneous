@@ -45,40 +45,40 @@ Workflow Check-Service
     {
         Write-Verbose "$ServiceCount Services running, no work to do."
     }
-}
 
-<# 
-    .Synopsis
-    Check and start/stop a single service on a group of computers based on the paramaters provided.
+    <# 
+        .Synopsis
+        Check and start/stop a single service on a group of computers based on the paramaters provided.
 
-    .Description
-    This workflow is designed to provide an easy way to control a grouped service that 
-    cannot, or should not be available on all computers at all times for soem reason.
+        .Description
+        This workflow is designed to provide an easy way to control a grouped service that 
+        cannot, or should not be available on all computers at all times for soem reason.
 
-    .Parameter Computer <string[]>
-    The computer, or array of computers to manage a service for.
+        .Parameter Computer <string[]>
+        The computer, or array of computers to manage a service for.
     
-    .Parameter ServiceName <string>
-    The service name to manage.
+        .Parameter ServiceName <string>
+        The service name to manage.
 
-    .Parameter ServiceCount <integer>
-    The amount of services in the group that the script should aim to have runnnig at the end.
-    This defaults to 1.
+        .Parameter ServiceCount <integer>
+        The amount of services in the group that the script should aim to have runnnig at the end.
+        This defaults to 1.
 
-    .Example
-    Check-Service -Computer TEST_PC -ServiceName bits
+        .Example
+        Check-Service -Computer TEST_PC -ServiceName bits
 
-    .Example
-    Check-Service -Computer "TEST_PC", "TEST_PC2" -ServiceName bits
+        .Example
+        Check-Service -Computer "TEST_PC", "TEST_PC2" -ServiceName bits
 
-    .Example
-    Check-Service -Computer "TEST_PC", "TEST_PC2" -ServiceName bits -ServiceCount 2
+        .Example
+        Check-Service -Computer "TEST_PC", "TEST_PC2" -ServiceName bits -ServiceCount 2
     
-    .Notes
-    Name  : Check-Service.ps1
-    Author: David Green
+        .Notes
+        Name  : Check-Service.ps1
+        Author: David Green
   
-    .Link
-    http://www.tookitaway.co.uk
-    https://github.com/davegreen/miscellaneous.git
-#>
+        .Link
+        http://www.tookitaway.co.uk
+        https://github.com/davegreen/miscellaneous.git
+    #>
+}
