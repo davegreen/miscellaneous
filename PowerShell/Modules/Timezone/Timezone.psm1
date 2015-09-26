@@ -15,9 +15,10 @@
       .Notes
       Author: David Green
     #>
+
     [CmdletBinding()]
     param([parameter(Position=1,ValueFromPipelineByPropertyName=$True,ValueFromPipeline=$True,HelpMessage='Specify the timezone offset.')]
-          [ValidateScript({$_ -match '([\+\-])?[0-1][0-9]:[0,1,3,4][0,5]'})][string]$UTCOffset = '+00:00'
+          [ValidateScript({ $_ -match '([\+\-])?[0-1][0-9]:[0,1,3,4][0,5]' })][string]$UTCOffset = '+00:00'
     )
 
     $tz = (tzutil /l)
@@ -73,7 +74,7 @@ Function Get-Timezone()
       .Example
       Get-Timezone -All
       
-      Returns all valid computer timezones.
+      Returns all valid computer timezones from 'tzutil /l'.
 
       .Notes
       Author: David Green
