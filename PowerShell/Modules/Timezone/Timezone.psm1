@@ -16,8 +16,8 @@
       Author: David Green
     #>
     [CmdletBinding()]
-    param(
-        [parameter(Position=1,ValueFromPipelineByPropertyName=$True,ValueFromPipeline=$True,HelpMessage='Specify the timezone offset.')][ValidateScript({$_ -match '([\+\-])?[0-1][0-9]:[0,1,3,4][0,5]'})][string]$UTCOffset = '+00:00'
+    param([parameter(Position=1,ValueFromPipelineByPropertyName=$True,ValueFromPipeline=$True,HelpMessage='Specify the timezone offset.')]
+          [ValidateScript({$_ -match '([\+\-])?[0-1][0-9]:[0,1,3,4][0,5]'})][string]$UTCOffset = '+00:00'
     )
 
     $tz = (tzutil /l)
@@ -32,7 +32,9 @@
     {
         if (($tz.IndexOf($t) -1) % 3 -eq 0)
         {
-            $ValidUTCOffset = ((($tz[$tz.IndexOf($t) - 1]).Trim() | Select-String -Pattern "UTC[+-][0-1][0-9]:[0,1,3,4][0,5]|UTC" | Select-Object -First 1 -ExpandProperty Matches).Value).SubString(3)
+            $ValidUTCOffset = ((($tz[$tz.IndexOf($t) - 1]).Trim() | 
+            Select-String -Pattern "UTC[+-][0-1][0-9]:[0,1,3,4][0,5]|UTC" | 
+            Select-Object -First 1 -ExpandProperty Matches).Value).SubString(3)
             
             if (!$ValidUTCOffset)
             {
@@ -79,20 +81,20 @@ Function Get-Timezone()
 
     [CmdletBinding(DefaultParametersetName='Specific')]
     Param([parameter(Position=1,ParameterSetName='Specific',ValueFromPipelineByPropertyName=$True,ValueFromPipeline=$True,HelpMessage='Specify the timezone to set (from "tzutil /l").')]
-        [ValidateScript(
-        {
-            $tz = (tzutil /l)
-            $validoptions = foreach ($t in $tz)
-            { 
-                if (($tz.IndexOf($t) -1) % 3 -eq 0)
-                {
-                    $t.Trim()
-                }
-            }
+          [ValidateScript(
+          {
+              $tz = (tzutil /l)
+              $validoptions = foreach ($t in $tz)
+              { 
+                  if (($tz.IndexOf($t) -1) % 3 -eq 0)
+                  {
+                      $t.Trim()
+                  }
+              }
 
-            $validoptions.Contains($_)
-        })][string]$Timezone = (tzutil /g),
-        [parameter(Position=2,ParameterSetName='All',HelpMessage='Show all timezones.')][switch]$All
+              $validoptions.Contains($_)
+          })][string]$Timezone = (tzutil /g),
+          [parameter(Position=2,ParameterSetName='All',HelpMessage='Show all timezones.')][switch]$All
     )
 
     Begin
@@ -110,6 +112,7 @@ Function Get-Timezone()
                 {
                     $race = New-Object –TypeName PSObject
                     $race | Add-Member –MemberType NoteProperty –Name Timezone –Value $t
+
                     if (($timezones[$timezones.IndexOf($t) - 1]).StartsWith('(UTC)'))
                     {
                         $race | Add-Member –MemberType NoteProperty –Name UTCOffset –Value '+00:00'
@@ -119,6 +122,7 @@ Function Get-Timezone()
                     {
                         $race | Add-Member –MemberType NoteProperty -Name UTCOffset –Value ($timezones[$timezones.IndexOf($t) - 1]).SubString(4, 6)
                     }
+
                     $race | Add-Member –MemberType NoteProperty –Name ExampleLocation –Value ($timezones[$timezones.IndexOf($t) - 1]).Trim()
                     $race
                 }
@@ -133,6 +137,7 @@ Function Get-Timezone()
                 {
                     $race = New-Object –TypeName PSObject
                     $race | Add-Member –MemberType NoteProperty –Name Timezone –Value $t
+
                     if (($timezones[$timezones.IndexOf($t) - 1]).StartsWith('(UTC)'))
                     {
                         $race | Add-Member –MemberType NoteProperty –Name UTCOffset –Value '+00:00'
@@ -142,6 +147,7 @@ Function Get-Timezone()
                     {
                         $race | Add-Member –MemberType NoteProperty -Name UTCOffset –Value ($timezones[$timezones.IndexOf($t) - 1]).SubString(4, 6)
                     }
+
                     $race | Add-Member –MemberType NoteProperty –Name ExampleLocation –Value ($timezones[$timezones.IndexOf($t) - 1]).Trim()
                     $race
                 }
@@ -169,9 +175,8 @@ Function Set-Timezone()
     #>
 
     [CmdletBinding()]
-    param(
-        [parameter(Mandatory=$True,Position=1,ValueFromPipelineByPropertyName=$True,HelpMessage='Specify the timezone to set (from "Get-Timezone -All").')]
-        [ValidateScript({if (Get-Timezone -Timezone $_){$true}})][string]$Timezone
+    param([parameter(Mandatory=$True,Position=1,ValueFromPipelineByPropertyName=$True,HelpMessage='Specify the timezone to set (from "Get-Timezone -All").')]
+          [ValidateScript({if (Get-Timezone -Timezone $_){$true}})][string]$Timezone
     )
     
     Write-Verbose "Setting Timezone to $Timezone"
