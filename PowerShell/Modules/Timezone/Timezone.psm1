@@ -147,14 +147,15 @@ Function Set-Timezone()
       Author: David Green
     #>
 
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess=$true,
+                   ConfirmImpact="Low")]
     param([parameter(Mandatory=$True,Position=1,ValueFromPipelineByPropertyName=$True,HelpMessage='Specify the timezone to set (from "Get-Timezone -All").')]
           [ValidateScript({if (Get-Timezone -Timezone $_){$true}})][string]$Timezone
     )
     
-    if ((Get-Timezone).Timezone -ne $Timezone)
+    if ((Get-Timezone).Timezone -ne $Timezone -and $PSCmdlet.ShouldProcess($Timezone))
     {
-        Write-Verbose "Setting Timezone to $Timezone"
+        Write-Verbose -Message "Setting Timezone to $Timezone"
         tzutil.exe /s $Timezone
     }
 }
