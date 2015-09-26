@@ -179,6 +179,9 @@ Function Set-Timezone()
           [ValidateScript({if (Get-Timezone -Timezone $_){$true}})][string]$Timezone
     )
     
-    Write-Verbose "Setting Timezone to $Timezone"
-    tzutil.exe /s $Timezone
+    if ((Get-Timezone).Timezone -ne $Timezone)
+    {
+        Write-Verbose "Setting Timezone to $Timezone"
+        tzutil.exe /s $Timezone
+    }
 }
