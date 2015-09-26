@@ -10,7 +10,7 @@
       .Example
       Get-TimezoneFromOffset -UTCOffset '+08:00'
       
-      Get timezones that match the offset of UTC+08:00 (China, North Asia, Singapore, etc.
+      Get timezones that match the offset of UTC+08:00 (e.g. China, North Asia, Singapore).
 
       .Notes
       Author: David Green
