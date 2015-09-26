@@ -104,53 +104,25 @@ Function Get-Timezone()
 
     Process
     {
-        if ($All)
-        {
-            foreach ($t in $timezones)
-            { 
-                if (($timezones.IndexOf($t) -1) % 3 -eq 0)
+        foreach ($t in $timezones)
+        { 
+            if (($t -match "^$Timezone$") -or (($timezones.IndexOf($t) -1) % 3 -eq 0 -and $All))
+            {
+                $race = New-Object –TypeName PSObject
+                $race | Add-Member –MemberType NoteProperty –Name Timezone –Value $t
+
+                if (($timezones[$timezones.IndexOf($t) - 1]).StartsWith('(UTC)'))
                 {
-                    $race = New-Object –TypeName PSObject
-                    $race | Add-Member –MemberType NoteProperty –Name Timezone –Value $t
-
-                    if (($timezones[$timezones.IndexOf($t) - 1]).StartsWith('(UTC)'))
-                    {
-                        $race | Add-Member –MemberType NoteProperty –Name UTCOffset –Value '+00:00'
-                    }
-
-                    elseif (($timezones[$timezones.IndexOf($t) - 1]).Length -gt 10)
-                    {
-                        $race | Add-Member –MemberType NoteProperty -Name UTCOffset –Value ($timezones[$timezones.IndexOf($t) - 1]).SubString(4, 6)
-                    }
-
-                    $race | Add-Member –MemberType NoteProperty –Name ExampleLocation –Value ($timezones[$timezones.IndexOf($t) - 1]).Trim()
-                    $race
+                    $race | Add-Member –MemberType NoteProperty –Name UTCOffset –Value '+00:00'
                 }
-            } 
-        }
 
-        else
-        {
-            foreach ($t in $timezones)
-            { 
-                if ($t -match "^$Timezone$")
+                elseif (($timezones[$timezones.IndexOf($t) - 1]).Length -gt 10)
                 {
-                    $race = New-Object –TypeName PSObject
-                    $race | Add-Member –MemberType NoteProperty –Name Timezone –Value $t
-
-                    if (($timezones[$timezones.IndexOf($t) - 1]).StartsWith('(UTC)'))
-                    {
-                        $race | Add-Member –MemberType NoteProperty –Name UTCOffset –Value '+00:00'
-                    }
-
-                    elseif (($timezones[$timezones.IndexOf($t) - 1]).Length -gt 10)
-                    {
-                        $race | Add-Member –MemberType NoteProperty -Name UTCOffset –Value ($timezones[$timezones.IndexOf($t) - 1]).SubString(4, 6)
-                    }
-
-                    $race | Add-Member –MemberType NoteProperty –Name ExampleLocation –Value ($timezones[$timezones.IndexOf($t) - 1]).Trim()
-                    $race
+                    $race | Add-Member –MemberType NoteProperty -Name UTCOffset –Value ($timezones[$timezones.IndexOf($t) - 1]).SubString(4, 6)
                 }
+
+                $race | Add-Member –MemberType NoteProperty –Name ExampleLocation –Value ($timezones[$timezones.IndexOf($t) - 1]).Trim()
+                $race
             }
         }
     }
