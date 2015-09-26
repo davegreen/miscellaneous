@@ -92,7 +92,7 @@ Function Get-Timezone()
                   }
               }
 
-              $validoptions.Contains($_)
+              $validoptions -contains $_
           })][string]$Timezone = (tzutil /g),
           [parameter(Position=2,ParameterSetName='All',HelpMessage='Show all timezones.')][switch]$All
     )
