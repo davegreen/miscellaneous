@@ -11,9 +11,9 @@ Function Get-BatteryStatus
 {
     $ErrorProvider.Clear()
 
-    $BatteryStatus = (Get-WmiObject -Query "Select BatteryStatus From Win32_Battery").BatteryStatus
+    $Battery = Get-CimInstance -ClassName Win32_Battery
 
-    if ($BatteryStatus -ne 2)
+    if ($Battery.BatteryStatus -ne 2 -or $Battery.EstimatedChargeRemaining -le 90)
     {
         $ErrorProvider.SetError($LBMessage, "Please provide the computer with AC Power.")
     }
