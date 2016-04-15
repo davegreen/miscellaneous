@@ -29,33 +29,33 @@ Describe 'Get-Timezone' {
 Describe 'Get-TimezoneFromOffset' {
     Context 'UTC' {
         It 'Returns the UTC timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '+00:00').Timezone | Select -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '+00:00').Offset | Select -First 1 | Should Be '+00:00'
-            (Get-TimezoneFromOffset -UTCOffset '+00:00').ExampleLocation | Select -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '+00:00').Timezone | Select-Object -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '+00:00').Offset | Select-Object -First 1 | Should Be '+00:00'
+            (Get-TimezoneFromOffset -UTCOffset '+00:00').ExampleLocation | Select-Object -First 1 | Should Not Be $null
         }
     }
 
     Context 'Arabian Timezone' {
         It 'Returns the Arabian timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '+04:00').Timezone | Select -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '+04:00').Offset  | Select -First 1 | Should Be '+04:00'
-            (Get-TimezoneFromOffset -UTCOffset '+04:00').ExampleLocation | Select -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '+04:00').Timezone | Select-Object -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '+04:00').Offset  | Select-Object -First 1 | Should Be '+04:00'
+            (Get-TimezoneFromOffset -UTCOffset '+04:00').ExampleLocation | Select-Object -First 1 | Should Not Be $null
         }
     }
 
     Context 'Venezuela Timezone' {
         It 'Returns the Venezuela timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '-04:30').Timezone | Select -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '-04:30').Offset  | Select -First 1 | Should Be '-04:30'
-            (Get-TimezoneFromOffset -UTCOffset '-04:30').ExampleLocation | Select -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '-04:30').Timezone | Select-Object -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '-04:30').Offset  | Select-Object -First 1 | Should Be '-04:30'
+            (Get-TimezoneFromOffset -UTCOffset '-04:30').ExampleLocation | Select-Object -First 1 | Should Not Be $null
         }
     }
 
     Context 'Samoa Standard Time' {
         It 'Returns the Samoa timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '+13:00').Timezone | Select -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '+13:00').Offset  | Select -First 1 | Should Be '+13:00'
-            (Get-TimezoneFromOffset -UTCOffset '+13:00').ExampleLocation | Select -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '+13:00').Timezone | Select-Object -First 1 | Should Not Be $null
+            (Get-TimezoneFromOffset -UTCOffset '+13:00').Offset  | Select-Object -First 1 | Should Be '+13:00'
+            (Get-TimezoneFromOffset -UTCOffset '+13:00').ExampleLocation | Select-Object -First 1 | Should Not Be $null
         }
     }
 }
