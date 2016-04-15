@@ -189,6 +189,22 @@ Function Set-Timezone {
 }
 
 Register-ArgumentCompleter -CommandName Get-Timezone, Set-Timezone -ParameterName Timezone -ScriptBlock {
+    <#
+      This is the argument completer to return available timezone parameters for use with getting and setting the timezone.
+
+      Provided parameters:
+        Parameter commandName
+            The command calling this arguement completer.
+        Parameter parameterName
+            The parameter currently active for the argument completer.
+        Parameter currentContent
+            The current data in the prompt for the parameter specified above.
+        Parameter commandAst
+            The full AST for the current command.
+        Parameter  fakeBoundParameters
+            The current parameters on the prompt.
+    #>
+
     Param(
         $commandName,
         $parameterName,
@@ -211,10 +227,10 @@ Register-ArgumentCompleter -CommandName Get-Timezone, Set-Timezone -ParameterNam
         }
         
         New-Object System.Management.Automation.CompletionResult (
-            $CompletionText,
-            $_,
-            'ParameterValue',
-            "$_ (Timezone)"
+            $CompletionText,  #Completion text that will show up on the command line.
+            $_,               #List item text that will show up in intellisense.
+            'ParameterValue', #The type of the completion result.
+            "$_ (Timezone)"   #The tooltip info that will show up additionally in intellisense.
         )
     }
 }
