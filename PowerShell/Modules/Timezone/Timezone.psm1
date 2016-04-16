@@ -61,7 +61,7 @@ Function Get-TimezoneFromOffset {
     foreach ($tz in $matchedtz) {
         $TimezoneObj = New-Object -TypeName PSObject
         $TimezoneObj | Add-Member -MemberType NoteProperty -Name Timezone -Value $tz.Timezone
-        $TimezoneObj | Add-Member -MemberType NoteProperty -Name Offset -Value $UTCOffset
+        $TimezoneObj | Add-Member -MemberType NoteProperty -Name UTCOffset -Value $UTCOffset
         $TimezoneObj | Add-Member -MemberType NoteProperty -Name ExampleLocation -Value $tz.ExampleLocation
         $TimezoneObj
     }
