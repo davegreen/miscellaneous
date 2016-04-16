@@ -28,6 +28,17 @@ Describe 'Get-Timezone' {
         }
     }
 
+    Context 'All' {
+        It 'Checks all timezones for consistency with itself' {
+            foreach ($timezone in Get-Timezone -All) {
+                $tz = Get-Timezone -Timezone $timezone.Timezone
+                $tz.Timezone -contains $timezone.Timezone | Should Be $true
+                $tz.UTCOffset -contains $timezone.UTCOffset | Should Be $true
+                $tz.ExampleLocation -contains $timezone.ExampleLocation | Should Be $true
+            }
+        }
+    }
+
     Context 'PipelineInput' {
         It 'Returns a timezone from pipeline data by value' {
             'UTC' | Get-Timezone | Should Not Be $null
@@ -35,7 +46,7 @@ Describe 'Get-Timezone' {
         }
 
         It 'Returns a timezone from pipeline data by property name' {
-             Get-Timezone -Timezone 'Pacific Standard Time'| Get-Timezone | Should Not Be $null
+             Get-Timezone -Timezone 'Pacific Standard Time' | Get-Timezone | Should Not Be $null
         }
     }
 
@@ -90,7 +101,7 @@ Describe 'Get-TimezoneFromOffset' {
         }
 
         It 'Returns a timezone from pipeline data by property name' {
-             Get-Timezone -Timezone 'Pacific Standard Time'| Get-TimezoneFromOffset | Should Not Be $null
+             Get-Timezone -Timezone 'Pacific Standard Time' | Get-TimezoneFromOffset | Should Not Be $null
         }
     }
 
@@ -104,11 +115,25 @@ Describe 'Get-TimezoneFromOffset' {
 }
 
 Describe 'Set-Timezone-UTC' {
-    It 'Sets the timezone to UTC' {
-        Set-Timezone -Timezone "UTC" -WhatIf | Should Be $null
+    Context 'Standard' {
+        It 'Sets the timezone to UTC' {
+            Set-Timezone -Timezone 'UTC' -WhatIf | Should Be $null
+        }
     }
 
-    It 'Tries to set an invalid timezone' {
-        { Set-Timezone -Timezone 'My First Timezone' } | Should Throw
+    Context 'PipelineInput' {
+        It 'Sets the timezone from pipeline data' {
+            'Dateline Standard Time' | Set-Timezone -WhatIf Get-TimezoneFromOffset | Should Be $null
+        }
+
+        It 'Returns a timezone from pipeline data by property name' {
+             Get-Timezone -Timezone 'Hawaiian Standard Time' | Set-Timezone -WhatIf | Should Be $null
+        }
+    }
+
+    Context 'Validation' {
+        It 'Tries to set an invalid timezone' {
+            { Set-Timezone -Timezone 'My First Timezone' } | Should Throw
+        }
     }
 }
