@@ -28,6 +28,17 @@ Describe 'Get-Timezone' {
         }
     }
 
+    Context 'PipelineInput' {
+        It 'Returns a timezone from pipeline data by value' {
+            'UTC' | Get-Timezone | Should Not Be $null
+            'utc' | Get-Timezone | Should Not Be $null
+        }
+
+        It 'Returns a timezone from pipeline data by property name' {
+             Get-Timezone -Timezone 'Pacific Standard Time'| Get-Timezone | Should Not Be $null
+        }
+    }
+
     Context 'Validation' {
         It 'Tries to get an invalid timezone' {
             { Get-Timezone -Timezone 'My First Timezone' } | Should Throw
@@ -42,7 +53,7 @@ Describe 'Get-TimezoneFromOffset' {
         It 'Returns the UTC timezone offset' {
             @('00:00', '+00:00', '-00:00') | ForEach-Object {
                 $utcTz = Get-Timezone -Timezone 'UTC'
-                $timezone = Get-TimezoneFromOffset $_
+                $timezone = Get-TimezoneFromOffset -UTCOffset $_
                 $timezone.Timezone -contains $utcTz.Timezone | Should Be $true
                 $timezone.UTCOffset -contains $utcTz.UTCOffset | Should Be $true
                 $timezone.ExampleLocation -contains $utcTz.ExampleLocation | Should Be $true
@@ -61,13 +72,25 @@ Describe 'Get-TimezoneFromOffset' {
     }
 
     Context 'All' {
-        It 'Checks all Timezone Offsets for consistency with Get-Timezone' {
+        It 'Checks all timezone offsets for consistency with Get-Timezone' {
             foreach ($timezone in Get-Timezone -All) {
                 $tzo = Get-TimezoneFromOffset -UTCOffset $timezone.UTCOffset
                 $tzo.Timezone -contains $timezone.Timezone | Should Be $true
                 $tzo.UTCOffset -contains $timezone.UTCOffset | Should Be $true
                 $tzo.ExampleLocation -contains $timezone.ExampleLocation | Should Be $true
             }
+        }
+    }
+
+    Context 'PipelineInput' {
+        It 'Returns timezone offsets from pipeline data' {
+            '+00:00' | Get-TimezoneFromOffset | Should Not Be $null
+            '02:00' | Get-TimezoneFromOffset | Should Not Be $null
+            '-04:00' | Get-TimezoneFromOffset | Should Not Be $null
+        }
+
+        It 'Returns a timezone from pipeline data by property name' {
+             Get-Timezone -Timezone 'Pacific Standard Time'| Get-TimezoneFromOffset | Should Not Be $null
         }
     }
 
