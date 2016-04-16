@@ -1,5 +1,3 @@
-#Requires -Version 3
-
 Function Get-TimezoneFromOffset {
     <#
       .Synopsis
@@ -14,7 +12,7 @@ Function Get-TimezoneFromOffset {
       Get timezones that match the offset of UTC+08:00 (China, North Asia, Singapore, etc.
 
       .Notes
-      Author: David Green
+      Author: David Green (http://tookitaway.co.uk/)
     #>
 
     [CmdletBinding()]
@@ -90,7 +88,7 @@ Function Get-Timezone {
       Returns all valid computer timezones.
 
       .Notes
-      Author: David Green
+      Author: David Green (http://tookitaway.co.uk/)
     #>
 
     [CmdletBinding(DefaultParametersetName='Specific')]
@@ -173,7 +171,7 @@ Function Set-Timezone {
       Set the timezone to Singapore standard time (UTC+08:00).
 
       .Notes
-      Author: David Green
+      Author: David Green (http://tookitaway.co.uk/)
     #>
 
     [CmdletBinding(SupportsShouldProcess=$true)]
@@ -204,7 +202,7 @@ Register-ArgumentCompleter -CommandName Get-Timezone, Set-Timezone -ParameterNam
         Parameter commandAst
             The full AST for the current command.
         Parameter  fakeBoundParameters
-            The current parameters on the prompt.
+            A hashtable of the current parameters on the prompt.
     #>
 
     Param(
