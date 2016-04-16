@@ -139,7 +139,7 @@ Function Get-Timezone {
 
         else {
             foreach ($t in $timezones) { 
-                if ($t -match ('^' + [regex]::Escape($Timezone))) {
+                if ($t -match ('^' + [regex]::Escape($Timezone) + '$')) {
                     $race = New-Object -TypeName PSObject
                     $race | Add-Member -MemberType NoteProperty -Name Timezone -Value $t
 
