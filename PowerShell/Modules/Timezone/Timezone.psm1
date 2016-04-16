@@ -58,11 +58,11 @@ Function Get-TimezoneFromOffset {
     
     $matchedtz = $timezones | Where-Object ExampleLocation -match "$([regex]::Escape($Offset))"
 
-    foreach ($tz in $matchedtz) { 
+    foreach ($tz in $matchedtz) {
         $TimezoneObj = New-Object -TypeName PSObject
-        $TimezoneObj | Add-Member -MemberType NoteProperty -Name Timezone -Value $timezones[$timezones.IndexOf($tz) + 1].Timezone
+        $TimezoneObj | Add-Member -MemberType NoteProperty -Name Timezone -Value $tz.Timezone
         $TimezoneObj | Add-Member -MemberType NoteProperty -Name Offset -Value $UTCOffset
-        $TimezoneObj | Add-Member -MemberType NoteProperty -Name ExampleLocation -Value $timezones[$timezones.IndexOf($tz)].ExampleLocation
+        $TimezoneObj | Add-Member -MemberType NoteProperty -Name ExampleLocation -Value $tz.ExampleLocation
         $TimezoneObj
     }
 }
