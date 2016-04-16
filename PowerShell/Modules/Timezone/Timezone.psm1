@@ -43,7 +43,7 @@ Function Get-TimezoneFromOffset {
             
         }
     
-        { $_ -match '[+-]?0{1,2}:00' } {
+        { $_ -match '^([+-]?00|[+-]?0):00' } {
             $Offset = '(UTC)'
         }
 
