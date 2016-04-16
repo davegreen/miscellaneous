@@ -1,61 +1,51 @@
-#Requires -Module Timezone
+Import-Module "$PSScriptRoot\Timezone.psm1"
 
 Describe 'Get-Timezone' {
     Context 'UTC' {
-        It 'Returns a UTC Timezone object' {
-            (Get-Timezone).TimeZone | Should Not Be $null
-            (Get-Timezone).UTCOffset | Should Be '+00:00'
-            (Get-Timezone).ExampleLocation | Should Not Be $null
+        It 'Returns the current Timezone object' {
+            $timezone = Get-Timezone
+            $timezone.Timezone | Should Not Be $null
+            $timezone.UTCOffset | Should Not Be $null
+            $timezone.ExampleLocation | Should Not Be $null
         }
     }
     
-    Context 'Singapore' {
+    Context 'Ahead of GMT timezone' {
         It 'Returns a Singapore (UTC+08:00) Timezone object' {
-            (Get-Timezone -Timezone 'Singapore Standard Time').Timezone | Should Not Be $null
-            (Get-Timezone -Timezone 'Singapore Standard Time').UTCOffset | Should Be '+08:00'
-            (Get-Timezone -Timezone 'Singapore Standard Time').ExampleLocation | Should Not Be $null
+            $timezone = (Get-Timezone -Timezone 'Singapore Standard Time')
+            $timezone.Timezone | Should Be 'Singapore Standard Time'
+            $timezone.UTCOffset | Should Be '+08:00'
+            $timezone.ExampleLocation | Should Be '(UTC+08:00) Kuala Lumpur, Singapore'
         }
     }
     
-    Context 'Central America' {
+    Context 'Behind GMT timezone' {
         It 'Returns a Central America (UTC-06:00) Timezone object' {
-            (Get-Timezone -Timezone 'Central America Standard Time').Timezone | Should Not Be $null
-            (Get-Timezone -Timezone 'Central America Standard Time').UTCOffset | Should Be '-06:00'
-            (Get-Timezone -Timezone 'Central America Standard Time').ExampleLocation | Should Not Be $null
+            $timezone = (Get-Timezone -Timezone 'Central America Standard Time')
+            $timezone.Timezone | Should Be 'Central America Standard Time'
+            $timezone.UTCOffset | Should Be '-06:00'
+            $timezone.ExampleLocation | Should Be '(UTC-06:00) Central America'
         }
     }
 }
 
 Describe 'Get-TimezoneFromOffset' {
-    Context 'UTC' {
-        It 'Returns the UTC timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '+00:00').Timezone | Select-Object -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '+00:00').Offset | Select-Object -First 1 | Should Be '+00:00'
-            (Get-TimezoneFromOffset -UTCOffset '+00:00').ExampleLocation | Select-Object -First 1 | Should Not Be $null
+    Context 'Current' {
+        It 'Returns the current timezone offset' {
+            $currentTz = Get-Timezone
+            $timezone = Get-TimezoneFromOffset
+            $timezone.Timezone -contains $currentTz.Timezone | Should Be $true
+            $timezone.UTCOffset -eq $currentTz.UTCOffset | Should Be $true
+            $timezone.ExampleLocation -contains $currentTz.ExampleLocation | Should Be $true
         }
     }
 
-    Context 'Arabian Timezone' {
-        It 'Returns the Arabian timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '+04:00').Timezone | Select-Object -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '+04:00').Offset  | Select-Object -First 1 | Should Be '+04:00'
-            (Get-TimezoneFromOffset -UTCOffset '+04:00').ExampleLocation | Select-Object -First 1 | Should Not Be $null
-        }
-    }
-
-    Context 'Venezuela Timezone' {
-        It 'Returns the Venezuela timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '-04:30').Timezone | Select-Object -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '-04:30').Offset  | Select-Object -First 1 | Should Be '-04:30'
-            (Get-TimezoneFromOffset -UTCOffset '-04:30').ExampleLocation | Select-Object -First 1 | Should Not Be $null
-        }
-    }
-
-    Context 'Samoa Standard Time' {
-        It 'Returns the Samoa timezone offset' {
-            (Get-TimezoneFromOffset -UTCOffset '+13:00').Timezone | Select-Object -First 1 | Should Not Be $null
-            (Get-TimezoneFromOffset -UTCOffset '+13:00').Offset  | Select-Object -First 1 | Should Be '+13:00'
-            (Get-TimezoneFromOffset -UTCOffset '+13:00').ExampleLocation | Select-Object -First 1 | Should Not Be $null
+    Context 'All' {
+        foreach ($timezone in Get-Timezone -All) {
+            $tzo = Get-TimezoneFromOffset -UTCOffset $timezone.UTCOffset
+            $tzo.Timezone -contains $timezone.Timezone | Should Be $true
+            $tzo.UTCOffset -eq $timezone.UTCOffset | Should Be $true
+            $tzo.ExampleLocation -contains $timezone.ExampleLocation | Should Be $true
         }
     }
 }
