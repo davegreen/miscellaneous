@@ -1,3 +1,7 @@
+if ((Get-Module).Name -contains 'Timezone') {
+    Remove-Module -Name Timezone
+}
+
 Import-Module "$PSScriptRoot\Timezone.psm1"
 
 Describe 'Get-Timezone' {
@@ -137,3 +141,5 @@ Describe 'Set-Timezone-UTC' {
         }
     }
 }
+
+Remove-Module -Name Timezone
