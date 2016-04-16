@@ -27,25 +27,55 @@ Describe 'Get-Timezone' {
             $timezone.ExampleLocation | Should Be '(UTC-06:00) Central America'
         }
     }
+
+    Context 'Validation' {
+        It 'Tries to get an invalid timezone' {
+            { Get-Timezone -Timezone 'My First Timezone' } | Should Throw
+            { Get-Timezone -Timezone 0 } | Should Throw
+            { Get-Timezone -Timezone 19:00 } | Should Throw
+        }
+    }
 }
 
 Describe 'Get-TimezoneFromOffset' {
+    Context 'UTC' {
+        It 'Returns the UTC timezone offset' {
+            @('00:00', '+00:00', '-00:00') | ForEach-Object {
+                $utcTz = Get-Timezone -Timezone 'UTC'
+                $timezone = Get-TimezoneFromOffset $_
+                $timezone.Timezone -contains $utcTz.Timezone | Should Be $true
+                $timezone.UTCOffset -contains $utcTz.UTCOffset | Should Be $true
+                $timezone.ExampleLocation -contains $utcTz.ExampleLocation | Should Be $true
+            }
+        }
+    }
+
     Context 'Current' {
         It 'Returns the current timezone offset' {
             $currentTz = Get-Timezone
             $timezone = Get-TimezoneFromOffset
             $timezone.Timezone -contains $currentTz.Timezone | Should Be $true
-            $timezone.UTCOffset -eq $currentTz.UTCOffset | Should Be $true
+            $timezone.UTCOffset -contains $currentTz.UTCOffset | Should Be $true
             $timezone.ExampleLocation -contains $currentTz.ExampleLocation | Should Be $true
         }
     }
 
     Context 'All' {
-        foreach ($timezone in Get-Timezone -All) {
-            $tzo = Get-TimezoneFromOffset -UTCOffset $timezone.UTCOffset
-            $tzo.Timezone -contains $timezone.Timezone | Should Be $true
-            $tzo.UTCOffset -eq $timezone.UTCOffset | Should Be $true
-            $tzo.ExampleLocation -contains $timezone.ExampleLocation | Should Be $true
+        It 'Checks all Timezone Offsets for consistency with Get-Timezone' {
+            foreach ($timezone in Get-Timezone -All) {
+                $tzo = Get-TimezoneFromOffset -UTCOffset $timezone.UTCOffset
+                $tzo.Timezone -contains $timezone.Timezone | Should Be $true
+                $tzo.UTCOffset -contains $timezone.UTCOffset | Should Be $true
+                $tzo.ExampleLocation -contains $timezone.ExampleLocation | Should Be $true
+            }
+        }
+    }
+
+    Context 'Validation' {
+        It 'Tries to get an invalid timezone offset' {
+            { Get-TimezoneFromOffset -UTCOffset 'My First Timezone' } | Should Throw
+            { Get-TimezoneFromOffset -UTCOffset 0 } | Should Throw
+            Get-TimezoneFromOffset -UTCOffset 19:00 | Should Be $null
         }
     }
 }
@@ -53,5 +83,9 @@ Describe 'Get-TimezoneFromOffset' {
 Describe 'Set-Timezone-UTC' {
     It 'Sets the timezone to UTC' {
         Set-Timezone -Timezone "UTC" -WhatIf | Should Be $null
+    }
+
+    It 'Tries to set an invalid timezone' {
+        { Set-Timezone -Timezone 'My First Timezone' } | Should Throw
     }
 }
