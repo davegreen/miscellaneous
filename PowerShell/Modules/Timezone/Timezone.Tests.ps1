@@ -123,7 +123,7 @@ Describe 'Set-Timezone-UTC' {
 
     Context 'PipelineInput' {
         It 'Sets the timezone from pipeline data' {
-            'Dateline Standard Time' | Set-Timezone -WhatIf Get-TimezoneFromOffset | Should Be $null
+            'Dateline Standard Time' | Set-Timezone -WhatIf | Should Be $null
         }
 
         It 'Returns a timezone from pipeline data by property name' {
