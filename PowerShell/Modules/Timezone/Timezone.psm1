@@ -6,7 +6,7 @@ Function Get-TimezoneFromOffset {
       A function that gets the timezones that match a particular offset from UTC
 
       .Parameter UTCOffset
-      A string containing offset time you require. This must match the form +NN:NN or -NN:NN.
+      A string containing offset time you require. This must match the form +NN:NN, NN:NN or -NN:NN.
 
       .Example
       Get-TimezoneFromOffset -UTCOffset '+08:00'
@@ -20,7 +20,7 @@ Function Get-TimezoneFromOffset {
     [CmdletBinding()]
     param(
         [parameter(Position=1,HelpMessage='Specify the timezone offset.')]
-        [ValidateScript({$_ -match '([\+\-])?[0-1][0-9]:[0|1|3|4][0|5]'})]
+        [ValidateScript({$_ -match '^[+-]?[0-9]{2}:[0-9]{2}$'})]
         [string]$UTCOffset = (Get-Timezone).UTCOffset
     )
 
@@ -43,8 +43,10 @@ Function Get-TimezoneFromOffset {
             
         }
     
-        { $_ -match '^([+-]?00|[+-]?0):00' } {
+        { $_ -match '^[+-]?00:00' } {
             $Offset = '(UTC)'
+            $UTCOffset = '+00:00'
+            break
         }
 
         { $_ -match '^-' } {
