@@ -7,4 +7,4 @@
 	
 #>
 
-New-ModuleManifest -Path "$PSScriptRoot\Timezone.psd1" -Description 'A PowerShell script module designed to get and set the timezone, using tzutil.' -RootModule 'Timezone.psm1' -Author 'David Green' -CompanyName 'http://tookitaway.co.uk/' -Copyright '(c) 2015 David Green. All rights reserved.' -PowerShellVersion '5.0' -ModuleVersion '1.01' -FileList @('Timezone.psd1', 'Timezone.psm1', 'Timezone.Tests.ps1') -FunctionsToExport @('Get-Timezone', 'Get-TimezoneFromOffset', 'Set-Timezone')
+New-ModuleManifest -Path "$PSScriptRoot\Timezone.psd1" -Description 'A PowerShell script module designed to get and set the timezone, using tzutil.' -RootModule 'Timezone.psm1' -Author 'David Green' -CompanyName 'http://tookitaway.co.uk/' -Copyright '(c) 2016 David Green. All rights reserved.' -PowerShellVersion '5.0' -ModuleVersion '1.0.1' -FileList @('Timezone.psd1', 'Timezone.psm1', 'Timezone.Tests.ps1') -FunctionsToExport @('Get-Timezone', 'Get-TimezoneFromOffset', 'Set-Timezone')
