@@ -250,6 +250,16 @@
         <decimal id="quarantine_purgeitemsafterdelay" valueName="PurgeItemsAfterDelay" minValue="0" maxValue="10000000" />
       </elements>
     </policy>
+    <policy name="real-time_protection_disablescriptscanning" class="Machine" displayName="$(string.real-time_protection_disablescriptscanning)" explainText="$(string.real-time_protection_disablescriptscanning_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" valueName="DisableScriptScanning">
+      <parentCategory ref="real-time_protection" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="0" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="1" />
+      </disabledValue>
+    </policy>
     <policy name="real-time_protection_disablebehaviormonitoring" class="Machine" displayName="$(string.real-time_protection_disablebehaviormonitoring)" explainText="$(string.real-time_protection_disablebehaviormonitoring_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" valueName="DisableBehaviorMonitoring">
       <parentCategory ref="real-time_protection" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
@@ -336,6 +346,16 @@
       <elements>
         <decimal id="real-time_protection_ioavmaxsize" valueName="IOAVMaxSize" minValue="0" maxValue="10000000" />
       </elements>
+    </policy>
+    <policy name="real-time_protection_localsettingoverridedisablescriptscanning" class="Machine" displayName="$(string.real-time_protection_localsettingoverridedisablescriptscanning)" explainText="$(string.real-time_protection_localsettingoverridedisablescriptscanning_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" valueName="LocalSettingOverrideDisableScriptScanning">
+      <parentCategory ref="real-time_protection" />
+      <supportedOn ref="windows:SUPPORTED_WindowsVista" />
+      <enabledValue>
+        <decimal value="1" />
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0" />
+      </disabledValue>
     </policy>
     <policy name="real-time_protection_localsettingoverridedisablebehaviormonitoring" class="Machine" displayName="$(string.real-time_protection_localsettingoverridedisablebehaviormonitoring)" explainText="$(string.real-time_protection_localsettingoverridedisablebehaviormonitoring_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" valueName="LocalSettingOverrideDisableBehaviorMonitoring">
       <parentCategory ref="real-time_protection" />
