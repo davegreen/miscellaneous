@@ -96,14 +96,14 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_proxybypass" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxybypass)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxybypass_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="ProxyBypass" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxybypass)">
+    <policy name="system_center_endpoint_protection_2012_r2_proxybypass" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxybypass)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxybypass_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxybypass)">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <text id="system_center_endpoint_protection_2012_r2_proxybypass" valueName="ProxyBypass" required="true" />
       </elements>
     </policy>
-    <policy name="system_center_endpoint_protection_2012_r2_proxyserver" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxyserver)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxyserver_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" valueName="ProxyServer" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxyserver)">
+    <policy name="system_center_endpoint_protection_2012_r2_proxyserver" class="Machine" displayName="$(string.system_center_endpoint_protection_2012_r2_proxyserver)" explainText="$(string.system_center_endpoint_protection_2012_r2_proxyserver_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware" presentation="$(presentation.system_center_endpoint_protection_2012_r2_proxyserver)">
       <parentCategory ref="system_center_endpoint_protection_2012_r2" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -846,7 +846,7 @@
         <decimal id="signature_updates_avsignaturedue" valueName="AVSignatureDue" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="signature_updates_definitionupdatefilesharessources" class="Machine" displayName="$(string.signature_updates_definitionupdatefilesharessources)" explainText="$(string.signature_updates_definitionupdatefilesharessources_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="DefinitionUpdateFileSharesSources" presentation="$(presentation.signature_updates_definitionupdatefilesharessources)">
+    <policy name="signature_updates_definitionupdatefilesharessources" class="Machine" displayName="$(string.signature_updates_definitionupdatefilesharessources)" explainText="$(string.signature_updates_definitionupdatefilesharessources_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_definitionupdatefilesharessources)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -883,7 +883,7 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="signature_updates_fallbackorder" class="Machine" displayName="$(string.signature_updates_fallbackorder)" explainText="$(string.signature_updates_fallbackorder_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="FallbackOrder" presentation="$(presentation.signature_updates_fallbackorder)">
+    <policy name="signature_updates_fallbackorder" class="Machine" displayName="$(string.signature_updates_fallbackorder)" explainText="$(string.signature_updates_fallbackorder_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_fallbackorder)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -1089,7 +1089,7 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="ux_configuration_customdefaultactiontoaststring" class="Machine" displayName="$(string.ux_configuration_customdefaultactiontoaststring)" explainText="$(string.ux_configuration_customdefaultactiontoaststring_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\UX Configuration" valueName="CustomDefaultActionToastString" presentation="$(presentation.ux_configuration_customdefaultactiontoaststring)">
+    <policy name="ux_configuration_customdefaultactiontoaststring" class="Machine" displayName="$(string.ux_configuration_customdefaultactiontoaststring)" explainText="$(string.ux_configuration_customdefaultactiontoaststring_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\UX Configuration" presentation="$(presentation.ux_configuration_customdefaultactiontoaststring)">
       <parentCategory ref="client_interface" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
