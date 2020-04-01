@@ -191,7 +191,7 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="nis_consumers_ips_throttledetectioneventsrate" class="Machine" displayName="$(string.nis_consumers_ips_throttledetectioneventsrate)" explainText="$(string.nis_consumers_ips_throttledetectioneventsrate_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\NIS\Consumers\IPS" valueName="ThrottleDetectionEventsRate" presentation="$(presentation.nis_consumers_ips_throttledetectioneventsrate)">
+    <policy name="nis_consumers_ips_throttledetectioneventsrate" class="Machine" displayName="$(string.nis_consumers_ips_throttledetectioneventsrate)" explainText="$(string.nis_consumers_ips_throttledetectioneventsrate_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\NIS\Consumers\IPS" presentation="$(presentation.nis_consumers_ips_throttledetectioneventsrate)">
       <parentCategory ref="network_inspection_system" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -243,7 +243,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="quarantine_purgeitemsafterdelay" class="Machine" displayName="$(string.quarantine_purgeitemsafterdelay)" explainText="$(string.quarantine_purgeitemsafterdelay_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Quarantine" valueName="PurgeItemsAfterDelay" presentation="$(presentation.quarantine_purgeitemsafterdelay)">
+    <policy name="quarantine_purgeitemsafterdelay" class="Machine" displayName="$(string.quarantine_purgeitemsafterdelay)" explainText="$(string.quarantine_purgeitemsafterdelay_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Quarantine" presentation="$(presentation.quarantine_purgeitemsafterdelay)">
       <parentCategory ref="quarantine" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -340,7 +340,7 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="real-time_protection_ioavmaxsize" class="Machine" displayName="$(string.real-time_protection_ioavmaxsize)" explainText="$(string.real-time_protection_ioavmaxsize_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" valueName="IOAVMaxSize" presentation="$(presentation.real-time_protection_ioavmaxsize)">
+    <policy name="real-time_protection_ioavmaxsize" class="Machine" displayName="$(string.real-time_protection_ioavmaxsize)" explainText="$(string.real-time_protection_ioavmaxsize_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" presentation="$(presentation.real-time_protection_ioavmaxsize)">
       <parentCategory ref="real-time_protection" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -417,7 +417,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="real-time_protection_realtimescandirection" class="Machine" displayName="$(string.real-time_protection_realtimescandirection)" explainText="$(string.real-time_protection_realtimescandirection_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" valueName="RealTimeScanDirection" presentation="$(presentation.real-time_protection_realtimescandirection)">
+    <policy name="real-time_protection_realtimescandirection" class="Machine" displayName="$(string.real-time_protection_realtimescandirection)" explainText="$(string.real-time_protection_realtimescandirection_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Real-Time Protection" presentation="$(presentation.real-time_protection_realtimescandirection)">
       <parentCategory ref="real-time_protection" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -450,7 +450,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="remediation_scan_scheduleday" class="Machine" displayName="$(string.remediation_scan_scheduleday)" explainText="$(string.remediation_scan_scheduleday_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Remediation" valueName="Scan_ScheduleDay" presentation="$(presentation.remediation_scan_scheduleday)">
+    <policy name="remediation_scan_scheduleday" class="Machine" displayName="$(string.remediation_scan_scheduleday)" explainText="$(string.remediation_scan_scheduleday_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Remediation" presentation="$(presentation.remediation_scan_scheduleday)">
       <parentCategory ref="remediation" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -503,21 +503,21 @@
         </enum>
       </elements>
     </policy>
-    <policy name="remediation_scan_scheduletime" class="Machine" displayName="$(string.remediation_scan_scheduletime)" explainText="$(string.remediation_scan_scheduletime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Remediation" valueName="Scan_ScheduleTime" presentation="$(presentation.remediation_scan_scheduletime)">
+    <policy name="remediation_scan_scheduletime" class="Machine" displayName="$(string.remediation_scan_scheduletime)" explainText="$(string.remediation_scan_scheduletime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Remediation" presentation="$(presentation.remediation_scan_scheduletime)">
       <parentCategory ref="remediation" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="remediation_scan_scheduletime" valueName="Scan_ScheduleTime" minValue="0" maxValue="1440" />
       </elements>
     </policy>
-    <policy name="reporting_additionalactiontimeout" class="Machine" displayName="$(string.reporting_additionalactiontimeout)" explainText="$(string.reporting_additionalactiontimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" valueName="AdditionalActionTimeOut" presentation="$(presentation.reporting_additionalactiontimeout)">
+    <policy name="reporting_additionalactiontimeout" class="Machine" displayName="$(string.reporting_additionalactiontimeout)" explainText="$(string.reporting_additionalactiontimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" presentation="$(presentation.reporting_additionalactiontimeout)">
       <parentCategory ref="reporting" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="reporting_additionalactiontimeout" valueName="AdditionalActionTimeOut" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="reporting_criticalfailuretimeout" class="Machine" displayName="$(string.reporting_criticalfailuretimeout)" explainText="$(string.reporting_criticalfailuretimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" valueName="CriticalFailureTimeOut" presentation="$(presentation.reporting_criticalfailuretimeout)">
+    <policy name="reporting_criticalfailuretimeout" class="Machine" displayName="$(string.reporting_criticalfailuretimeout)" explainText="$(string.reporting_criticalfailuretimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" presentation="$(presentation.reporting_criticalfailuretimeout)">
       <parentCategory ref="reporting" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -534,28 +534,28 @@
         <decimal value="1" />
       </disabledValue>
     </policy>
-    <policy name="reporting_noncriticaltimeout" class="Machine" displayName="$(string.reporting_noncriticaltimeout)" explainText="$(string.reporting_noncriticaltimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" valueName="NonCriticalTimeOut" presentation="$(presentation.reporting_noncriticaltimeout)">
+    <policy name="reporting_noncriticaltimeout" class="Machine" displayName="$(string.reporting_noncriticaltimeout)" explainText="$(string.reporting_noncriticaltimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" presentation="$(presentation.reporting_noncriticaltimeout)">
       <parentCategory ref="reporting" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="reporting_noncriticaltimeout" valueName="NonCriticalTimeOut" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="reporting_recentlycleanedtimeout" class="Machine" displayName="$(string.reporting_recentlycleanedtimeout)" explainText="$(string.reporting_recentlycleanedtimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" valueName="RecentlyCleanedTimeOut" presentation="$(presentation.reporting_recentlycleanedtimeout)">
+    <policy name="reporting_recentlycleanedtimeout" class="Machine" displayName="$(string.reporting_recentlycleanedtimeout)" explainText="$(string.reporting_recentlycleanedtimeout_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" presentation="$(presentation.reporting_recentlycleanedtimeout)">
       <parentCategory ref="reporting" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="reporting_recentlycleanedtimeout" valueName="RecentlyCleanedTimeOut" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="reporting_wpptracingcomponents" class="Machine" displayName="$(string.reporting_wpptracingcomponents)" explainText="$(string.reporting_wpptracingcomponents_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" valueName="WppTracingComponents" presentation="$(presentation.reporting_wpptracingcomponents)">
+    <policy name="reporting_wpptracingcomponents" class="Machine" displayName="$(string.reporting_wpptracingcomponents)" explainText="$(string.reporting_wpptracingcomponents_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" presentation="$(presentation.reporting_wpptracingcomponents)">
       <parentCategory ref="reporting" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="reporting_wpptracingcomponents" valueName="WppTracingComponents" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="reporting_wpptracinglevel" class="Machine" displayName="$(string.reporting_wpptracinglevel)" explainText="$(string.reporting_wpptracinglevel_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" valueName="WppTracingLevel" presentation="$(presentation.reporting_wpptracinglevel)">
+    <policy name="reporting_wpptracinglevel" class="Machine" displayName="$(string.reporting_wpptracinglevel)" explainText="$(string.reporting_wpptracinglevel_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Reporting" presentation="$(presentation.reporting_wpptracinglevel)">
       <parentCategory ref="reporting" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -572,21 +572,21 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="scan_archivemaxdepth" class="Machine" displayName="$(string.scan_archivemaxdepth)" explainText="$(string.scan_archivemaxdepth_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="ArchiveMaxDepth" presentation="$(presentation.scan_archivemaxdepth)">
+    <policy name="scan_archivemaxdepth" class="Machine" displayName="$(string.scan_archivemaxdepth)" explainText="$(string.scan_archivemaxdepth_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_archivemaxdepth)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="scan_archivemaxdepth" valueName="ArchiveMaxDepth" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="scan_archivemaxsize" class="Machine" displayName="$(string.scan_archivemaxsize)" explainText="$(string.scan_archivemaxsize_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="ArchiveMaxSize" presentation="$(presentation.scan_archivemaxsize)">
+    <policy name="scan_archivemaxsize" class="Machine" displayName="$(string.scan_archivemaxsize)" explainText="$(string.scan_archivemaxsize_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_archivemaxsize)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="scan_archivemaxsize" valueName="ArchiveMaxSize" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="scan_avgcpuloadfactor" class="Machine" displayName="$(string.scan_avgcpuloadfactor)" explainText="$(string.scan_avgcpuloadfactor_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="AvgCPULoadFactor" presentation="$(presentation.scan_avgcpuloadfactor)">
+    <policy name="scan_avgcpuloadfactor" class="Machine" displayName="$(string.scan_avgcpuloadfactor)" explainText="$(string.scan_avgcpuloadfactor_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_avgcpuloadfactor)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -763,14 +763,14 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="scan_purgeitemsafterdelay" class="Machine" displayName="$(string.scan_purgeitemsafterdelay)" explainText="$(string.scan_purgeitemsafterdelay_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="PurgeItemsAfterDelay" presentation="$(presentation.scan_purgeitemsafterdelay)">
+    <policy name="scan_purgeitemsafterdelay" class="Machine" displayName="$(string.scan_purgeitemsafterdelay)" explainText="$(string.scan_purgeitemsafterdelay_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_purgeitemsafterdelay)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="scan_purgeitemsafterdelay" valueName="PurgeItemsAfterDelay" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="scan_quickscaninterval" class="Machine" displayName="$(string.scan_quickscaninterval)" explainText="$(string.scan_quickscaninterval_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="QuickScanInterval" presentation="$(presentation.scan_quickscaninterval)">
+    <policy name="scan_quickscaninterval" class="Machine" displayName="$(string.scan_quickscaninterval)" explainText="$(string.scan_quickscaninterval_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_quickscaninterval)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -787,7 +787,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="scan_scanparameters" class="Machine" displayName="$(string.scan_scanparameters)" explainText="$(string.scan_scanparameters_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="ScanParameters" presentation="$(presentation.scan_scanparameters)">
+    <policy name="scan_scanparameters" class="Machine" displayName="$(string.scan_scanparameters)" explainText="$(string.scan_scanparameters_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_scanparameters)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -805,7 +805,7 @@
         </enum>
       </elements>
     </policy>
-    <policy name="scan_scheduleday" class="Machine" displayName="$(string.scan_scheduleday)" explainText="$(string.scan_scheduleday_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="ScheduleDay" presentation="$(presentation.scan_scheduleday)">
+    <policy name="scan_scheduleday" class="Machine" displayName="$(string.scan_scheduleday)" explainText="$(string.scan_scheduleday_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_scheduleday)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -858,28 +858,28 @@
         </enum>
       </elements>
     </policy>
-    <policy name="scan_schedulequickscantime" class="Machine" displayName="$(string.scan_schedulequickscantime)" explainText="$(string.scan_schedulequickscantime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="ScheduleQuickScanTime" presentation="$(presentation.scan_schedulequickscantime)">
+    <policy name="scan_schedulequickscantime" class="Machine" displayName="$(string.scan_schedulequickscantime)" explainText="$(string.scan_schedulequickscantime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_schedulequickscantime)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="scan_schedulequickscantime" valueName="ScheduleQuickScanTime" minValue="0" maxValue="1440" />
       </elements>
     </policy>
-    <policy name="scan_scheduletime" class="Machine" displayName="$(string.scan_scheduletime)" explainText="$(string.scan_scheduletime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" valueName="ScheduleTime" presentation="$(presentation.scan_scheduletime)">
+    <policy name="scan_scheduletime" class="Machine" displayName="$(string.scan_scheduletime)" explainText="$(string.scan_scheduletime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Scan" presentation="$(presentation.scan_scheduletime)">
       <parentCategory ref="scan" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="scan_scheduletime" valueName="ScheduleTime" minValue="0" maxValue="1440" />
       </elements>
     </policy>
-    <policy name="signature_updates_assignaturedue" class="Machine" displayName="$(string.signature_updates_assignaturedue)" explainText="$(string.signature_updates_assignaturedue_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="ASSignatureDue" presentation="$(presentation.signature_updates_assignaturedue)">
+    <policy name="signature_updates_assignaturedue" class="Machine" displayName="$(string.signature_updates_assignaturedue)" explainText="$(string.signature_updates_assignaturedue_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_assignaturedue)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="signature_updates_assignaturedue" valueName="ASSignatureDue" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="signature_updates_avsignaturedue" class="Machine" displayName="$(string.signature_updates_avsignaturedue)" explainText="$(string.signature_updates_avsignaturedue_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="AVSignatureDue" presentation="$(presentation.signature_updates_avsignaturedue)">
+    <policy name="signature_updates_avsignaturedue" class="Machine" displayName="$(string.signature_updates_avsignaturedue)" explainText="$(string.signature_updates_avsignaturedue_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_avsignaturedue)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -950,7 +950,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="signature_updates_scheduleday" class="Machine" displayName="$(string.signature_updates_scheduleday)" explainText="$(string.signature_updates_scheduleday_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="ScheduleDay" presentation="$(presentation.signature_updates_scheduleday)">
+    <policy name="signature_updates_scheduleday" class="Machine" displayName="$(string.signature_updates_scheduleday)" explainText="$(string.signature_updates_scheduleday_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_scheduleday)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -1003,7 +1003,7 @@
         </enum>
       </elements>
     </policy>
-    <policy name="signature_updates_scheduletime" class="Machine" displayName="$(string.signature_updates_scheduletime)" explainText="$(string.signature_updates_scheduletime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="ScheduleTime" presentation="$(presentation.signature_updates_scheduletime)">
+    <policy name="signature_updates_scheduletime" class="Machine" displayName="$(string.signature_updates_scheduletime)" explainText="$(string.signature_updates_scheduletime_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_scheduletime)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -1020,14 +1020,14 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="signature_updates_signatureupdatecatchupinterval" class="Machine" displayName="$(string.signature_updates_signatureupdatecatchupinterval)" explainText="$(string.signature_updates_signatureupdatecatchupinterval_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="SignatureUpdateCatchupInterval" presentation="$(presentation.signature_updates_signatureupdatecatchupinterval)">
+    <policy name="signature_updates_signatureupdatecatchupinterval" class="Machine" displayName="$(string.signature_updates_signatureupdatecatchupinterval)" explainText="$(string.signature_updates_signatureupdatecatchupinterval_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_signatureupdatecatchupinterval)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
         <decimal id="signature_updates_signatureupdatecatchupinterval" valueName="SignatureUpdateCatchupInterval" minValue="0" maxValue="4294967295" />
       </elements>
     </policy>
-    <policy name="signature_updates_signatureupdateinterval" class="Machine" displayName="$(string.signature_updates_signatureupdateinterval)" explainText="$(string.signature_updates_signatureupdateinterval_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" valueName="SignatureUpdateInterval" presentation="$(presentation.signature_updates_signatureupdateinterval)">
+    <policy name="signature_updates_signatureupdateinterval" class="Machine" displayName="$(string.signature_updates_signatureupdateinterval)" explainText="$(string.signature_updates_signatureupdateinterval_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\Signature Updates" presentation="$(presentation.signature_updates_signatureupdateinterval)">
       <parentCategory ref="signature_updates" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -1054,7 +1054,7 @@
         <decimal value="0" />
       </disabledValue>
     </policy>
-    <policy name="maps_mapsreporting" class="Machine" displayName="$(string.maps_mapsreporting)" explainText="$(string.maps_mapsreporting_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\SpyNet" valueName="SpyNetReporting" presentation="$(presentation.maps_mapsreporting)">
+    <policy name="maps_mapsreporting" class="Machine" displayName="$(string.maps_mapsreporting)" explainText="$(string.maps_mapsreporting_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\SpyNet" presentation="$(presentation.maps_mapsreporting)">
       <parentCategory ref="maps" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
@@ -1077,7 +1077,7 @@
         </enum>
       </elements>
     </policy>
-    <policy name="maps_submitsamplesconsent" class="Machine" displayName="$(string.maps_submitsamplesconsent)" explainText="$(string.maps_submitsamplesconsent_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\SpyNet" valueName="SubmitSamplesConsent" presentation="$(presentation.maps_submitsamplesconsent)">
+    <policy name="maps_submitsamplesconsent" class="Machine" displayName="$(string.maps_submitsamplesconsent)" explainText="$(string.maps_submitsamplesconsent_explain)" key="Software\Policies\Microsoft\Microsoft Antimalware\SpyNet" presentation="$(presentation.maps_submitsamplesconsent)">
       <parentCategory ref="maps" />
       <supportedOn ref="windows:SUPPORTED_WindowsVista" />
       <elements>
